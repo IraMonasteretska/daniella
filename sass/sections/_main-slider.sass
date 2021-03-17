@@ -1,0 +1,110 @@
+.mainslider-section 
+    height: 100vh
+    min-height: 575px
+    max-height: 1200px
+
+
+.mainslider__slide 
+    // padding-top: 65px
+    height: 100vh
+    background: #F1F1F1
+    position: relative
+    min-height: 575px
+    max-height: 1200px
+
+
+.mainslider__slide img 
+    width: 100%
+    height: 100%
+    object-fit: cover
+    object-position: 0 0
+
+
+.slick-slide 
+    outline: none
+
+
+.pagingInfo 
+    position: absolute
+    right: 130px
+    bottom: 55px
+    font-family: 'Open Sans', sans-serif
+    color: #9E9E9E
+    font-size: 20px
+    line-height: 27px
+
+
+.mainslider__slidebox 
+    position: absolute
+    z-index: 2
+    bottom: 25%
+    width: 100%
+    left: 0
+
+
+.mainslider__slidebox h3,
+.mainslider__slide-title 
+    font-family: 'Playfair Display', serif
+    font-size: 70px
+    line-height: 88px
+    letter-spacing: 0.08em
+    color: #ffffff
+    text-transform: capitalize
+    margin-bottom: 70px
+
+
+.mainslider .slick-arrow 
+    position: absolute
+    bottom: 55px
+    z-index: 2
+    border: none
+    padding: 0
+    outline: none
+    background: transparent
+    text-transform: uppercase
+    font-family: 'Open Sans', sans-serif
+    color: #ffffff
+    letter-spacing: 0.14em
+    font-size: 18px
+    line-height: 25px
+
+
+.mainslider .slick-arrow.slick-prev 
+    left: 130px
+
+
+.mainslider .slick-arrow.slick-next 
+    left: 385px
+
+
+.mainslider .slick-arrow.slick-next:before 
+    content: ''
+    display: inline-block
+    height: 1px
+    width: 144px
+    background: #ffffff
+    position: absolute
+    top: 48%
+    transform: translateX(-175px)
+    -webkit-transform: translateX(-175px)
+    -moz-transform: translateX(-175px)
+    -ms-transform: translateX(-175px)
+    -o-transform: translateX(-175px)
+
+
+.mainslider .slick-arrow.slick-next,
+.mainslider .slick-arrow.slick-prev,
+.aboutslider .slick-arrow.slick-next,
+.aboutslider .slick-arrow.slick-prev 
+    transition: .3s
+    -webkit-transition: .3s
+    -moz-transition: .3s
+    -ms-transition: .3s
+    -o-transition: .3s
+
+
+.mainslider .slick-arrow.slick-next:hover,
+.mainslider .slick-arrow.slick-prev:hover,
+.aboutslider .slick-arrow.slick-next:hover,
+.aboutslider .slick-arrow.slick-prev:hover 
+    opacity: .6

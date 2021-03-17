@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script> -->
+    <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyApj8qSzyO4DqXeQtFQPKI4mi6p-MBwlpo&amp;callback=e4.dealersearch.dependencies.googleMaps.dfd.resolve"></script>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/slick.css">
+    <link rel="stylesheet" href="css/select2.min.css">
+    <link rel="stylesheet" href="css/style.min.css">
+    <link rel="stylesheet" href="css/main.min.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <script id="obqScriptJQ" type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/44/5/intl/uk_ALL/common.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/44/5/intl/uk_ALL/util.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/44/5/intl/uk_ALL/geocoder.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/44/5/intl/uk_ALL/map.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/44/5/intl/uk_ALL/onion.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/44/5/intl/uk_ALL/overlay.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/44/5/intl/uk_ALL/marker.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/44/5/intl/uk_ALL/controls.js"></script>
+
+    <script>
+        // function initMap() {
+            var e4 = {};
+            e4.dealersearch = {
+                debug: false,
+                dependencies: {
+                    googleMaps: {
+                        timeout: null,
+                        dfd: null,
+                        load: function () {
+                            if ( e4.dealersearch.dependencies.googleMaps.dfd === null ) {
+                                e4.dealersearch.dependencies.googleMaps.dfd = jQuery.Deferred();
+                                jQuery.when( e4.dealersearch.dependencies.googleMaps.dfd ).then( e4.dealersearch.dependencies.googleMaps.callback, function () {
+                                    e4.util.debug( [
+                                        'googleMaps.load',
+                                        'fail callback',
+                                        e4.dealersearch.dependencies.googleMaps.dfd.state()
+                                    ], e4.dealersearch.debug );
+                                } );
+                            }
+                            var domScriptGM = document.createElement( 'script' ),
+                                domScriptFirst = document.getElementsByTagName( 'script' )[ 0 ];
+                            domScriptGM.src = '//maps.googleapis.com/maps/api/js?key=' + e4.dealersearch.googleMapsApiKey + '&callback=' + 'e4.dealersearch.dependencies.googleMaps.dfd.resolve';
+                            domScriptFirst.parentNode.insertBefore( domScriptGM, domScriptFirst );
+                            e4.dealersearch.dependencies.googleMaps.timeout = setTimeout( e4.dealersearch.dependencies.googleMaps.dfd.reject, e4.settings.require.timeout );
+                            return e4.dealersearch.dependencies.googleMaps.dfd.promise();
+                        },
+                        callback: function () {
+                            e4.util.debug( [
+                                'googleMaps.load',
+                                'done callback',
+                                e4.dealersearch.dependencies.googleMaps.dfd.state()
+                            ], e4.dealersearch.debug );
+                            clearTimeout( e4.dealersearch.dependencies.googleMaps.timeout );
+                            e4.dealersearch.dependencies.googleMaps.timeout = null;
+                            e4.dealersearch.geocoder = new google.maps.Geocoder();
+                        }
+                    },
+                    jQueryUImap: {
+                        load: function () {
+                            return e4.require.js( e4.settings.require.jQueryUImap, function () {
+                                e4.util.debug( [
+                                    'jQueryUImap.callback',
+                                    'dfd state',
+                                    e4.settings.require.jQueryUImap.promise.state()
+                                ], e4.dealersearch.debug );
+                                var jMap = jQuery( '.js-e-dealersearch' ).find( '.js-e-dealersearch-googlemap' );
+                                jQuery.extend( e4.dealersearch.map, {
+                                    build: function ( objMapSettings, fnCallback ) {
+                                        return jMap.gmap( objMapSettings, fnCallback );
+                                    },
+                                    get: function () {
+                                        return jMap.gmap( 'get', 'map' );
+                                    },
+                                    refresh: function () {
+                                        jMap.gmap( 'refresh' );
+                                    },
+                                    showInfoWindow: function ( objMarker ) {
+                                        jMap.gmap( 'openInfoWindow', {
+                                            'content': e4.dealersearch.markers.getInfoWindowContent( objMarker )
+                                        }, objMarker );
+                                    }
+                                } );
+                                jQuery.extend( e4.dealersearch.clusterer, {
+                                    get: function () {
+                                        return jMap.gmap( 'get', 'MarkerClusterer' );
+                                    },
+                                    set: function ( objMarkerClusterer ) {
+                                        return jMap.gmap( 'set', 'MarkerClusterer', objMarkerClusterer );
+                                    }
+                                } );
+                            } );
+                        }
+                    },
+                    markerClusterer: {
+                        load: function () {
+                            return e4.require.js( e4.settings.require.markerClusterer, function () {
+                                e4.util.debug( [
+                                    'markerClusterer.callback',
+                                    'dfd state',
+                                    e4.settings.require.markerClusterer.promise.state()
+                                ], e4.dealersearch.debug );
+                            } );
+                        }
+                    },
+                    handlebars: {
+                        load: function () {
+                            return e4.require.js( e4.settings.require.handlebars, function () {
+                                e4.util.debug( [
+                                    'handlebars.callback',
+                                    'dfd state',
+                                    e4.settings.require.handlebars.promise.state()
+                                ], e4.dealersearch.debug );
+                                e4.handlebars.registerTemplates( '#js-e-handlebars-tmpl-typeahead-footer #js-e-handlebars-tmpl-typeahead-pending #js-e-handlebars-tmpl-googlemap-infowindow #js-e-handlebars-tmpl-marker-list' );
+                            } );
+                        }
+                    },
+                    typeahead: {
+                        load: function () {
+                            return e4.require.js( e4.settings.require.typeahead, function () {
+                                e4.util.debug( [
+                                    'typeahead.callback',
+                                    'dfd state',
+                                    e4.settings.require.typeahead.promise.state()
+                                ], e4.dealersearch.debug );
+                                e4.dealersearch.form.init();
+                            } );
+                        }
+                    }
+                },
+                init: function () {
+                    var jDealersearch = jQuery( '.js-e-dealersearch' );
+                    if ( jDealersearch.length === 1 ) {
+                        e4.dealersearch.googleMapsApiKey = jDealersearch.data( 'googleMapsApiKey' );
+                        e4.dealersearch.unitSystem = jDealersearch.data( 'unitSystem' );
+                        e4.dealersearch.dfd = e4.dealersearch.loadDependenciesAndDealers();
+                    }
+                },
+                loadDependenciesAndDealers: function () {
+                    return jQuery.when.apply( jQuery, [
+                        e4.dealersearch.dependencies.googleMaps.load(),
+                        e4.dealersearch.dependencies.markerClusterer.load(),
+                        e4.dealersearch.dependencies.jQueryUImap.load(),
+                        e4.dealersearch.dependencies.typeahead.load(),
+                        e4.dealersearch.dependencies.handlebars.load(),
+                        e4.dealersearch.loadDealers()
+                    ] ).then( function () {
+                        e4.dealersearch.map.init();
+                        e4.util.debug( [
+                            'loadDependenciesAndDealers',
+                            'done callback'
+                        ], e4.dealersearch.debug );
+                    }, function () {
+                        e4.util.debug( [
+                            'loadDependenciesAndDealers',
+                            'fail callback'
+                        ], e4.dealersearch.debug );
+                    } );
+                },
+                ajax: function ( objAjaxSettings, fnCallback ) {
+                    var _objAjaxSettings = {
+                        url: e4.settings.dealersearch.url,
+                        data: jQuery( '.js-e-dealersearch-form' ).serialize(),
+                        dataType: 'json',
+                        cache: false
+                    };
+                    if ( objAjaxSettings !== null ) {
+                        _objAjaxSettings = jQuery.extend( _objAjaxSettings, objAjaxSettings );
+                    }
+                    return jQuery.ajax( _objAjaxSettings ).done( function ( jsonData ) {
+                        e4.dealersearch.data = jsonData;
+                        e4.util.debug( [
+                            'e4.dealersearch.ajax',
+                            'done callback'
+                        ], e4.dealersearch.debug );
+                        if ( typeof fnCallback === 'function' ) {
+                            fnCallback.call();
+                        }
+                    } );
+                },
+                loadDealers: function () {
+                    return e4.dealersearch.ajax( null );
+                },
+                reloadDealers: function ( fnCallback ) {
+                    return e4.dealersearch.ajax( null, function () {
+                        if ( typeof fnCallback === 'function' ) {
+                            fnCallback.call();
+                        }
+                        e4.dealersearch.markers.removeFromClusterer();
+                        e4.dealersearch.markers.init();
+                        e4.dealersearch.list.syncWithMap();
+                    } );
+                },
+                setCountryAndReloadDealers: function () {
+                    var gmMap = e4.dealersearch.map.get(),
+                        xhrDealers = e4.dealersearch.ajax( null );
+                    e4.dealersearch.resetAddress();
+                    e4.dealersearch.markers.removeFromClusterer();
+                    e4.util.debug( [
+                        'setCountryAndReloadDealers(' + e4.dealersearch.getCountryCode() + ')',
+                        'gmMap binding bounds_changed'
+                    ], e4.dealersearch.debug );
+                    gmMap.addListener( 'bounds_changed', function () {
+                        e4.util.debug( [
+                            'setCountryAndReloadDealers(' + e4.dealersearch.getCountryCode() + ')',
+                            'gmMap clearListeners bounds_changed'
+                        ], e4.dealersearch.debug );
+                        google.maps.event.clearListeners( gmMap, 'bounds_changed' );
+                        xhrDealers.done( function () {
+                            e4.util.debug( [
+                                'setCountryAndReloadDealers(' + e4.dealersearch.getCountryCode() + ')',
+                                'xhrDealers done',
+                                'markers.init'
+                            ], e4.dealersearch.debug );
+                            e4.dealersearch.markers.init();
+                            e4.dealersearch.list.syncWithMap();
+                        } );
+                    } );
+                    e4.dealersearch.map.setBoundsFromCountry();
+                    return xhrDealers;
+                },
+                getCountryCode: function () {
+                    return jQuery( '.js-e-dealersearch-country' ).val();
+                },
+                setCountryCode: function ( strCountryCode ) {
+                    e4.util.debug( [
+                        'setAddress',
+                        strCountryCode
+                    ], e4.dealersearch.debug );
+                    return jQuery( '.js-e-dealersearch-country' ).val( strCountryCode ).trigger( 'change' );
+                },
+                getAddress: function () {
+                    return e4.dealersearch.address;
+                },
+                setAddress: function ( objAddress ) {
+                    e4.util.debug( [
+                        'setAddress',
+                        objAddress
+                    ], e4.dealersearch.debug );
+                    if ( objAddress !== null ) {
+                        e4.dealersearch.form.setAddressInput( objAddress.formatted_address );
+                    }
+                    e4.dealersearch.address = objAddress;
+                    e4.dealersearch.markers.sort();
+                },
+                resetAddress: function () {
+                    e4.dealersearch.form.clearAddressInput();
+                    e4.dealersearch.setAddress( null );
+                },
+                searchByAddress: function ( objAddress ) {
+                    e4.dealersearch.setAddress( objAddress );
+                    e4.dealersearch.map.get().fitBounds( e4.dealersearch.map.getBoundsByAddress( objAddress ) );
+                    e4.dealersearch.map.fitResults();
+                    // TODO: Move to gtm namespace
+                    e4.gtm.pushDataLayer( {
+                        'eventCategory': 'Forhandlersøgning',
+                        'eventAction': objAddress.formatted_address,
+                        'eventLabel': location.pathname,
+                        'eventValue': 0,
+                        'eventInteraction': false,
+                        'event': 'track-ga-event'
+                    } );
+                },
+                geoLocation: {
+                    get: function () {
+                        navigator.geolocation.getCurrentPosition( function ( objPosition ) {
+                            e4.dealersearch.geocoder.geocode( {
+                                location: {
+                                    lat: objPosition.coords.latitude,
+                                    lng: objPosition.coords.longitude
+                                }
+                            }, function ( arrAddresses, strStatus ) {
+                                if ( strStatus === google.maps.GeocoderStatus.OK ) {
+                                    jQuery.each( arrAddresses[ 0 ].address_components, function ( intIndex, address_component ) {
+                                        jQuery.each( address_component.types, function ( intIndex, address_type ) {
+                                            if ( address_type === 'country' ) {
+                                                if ( address_component.short_name === e4.dealersearch.getCountryCode() ) {
+                                                    e4.util.debug( [
+                                                        'geoLocation.get',
+                                                        'geo country is current country.',
+                                                        'searching for address',
+                                                        arrAddresses[ 0 ]
+                                                    ], e4.dealersearch.debug );
+                                                    e4.dealersearch.searchByAddress( arrAddresses[ 0 ] );
+                                                    jQuery( '.js-e-dealersearch-address-input' ).typeahead( 'close' );
+                                                }
+                                                else {
+                                                    e4.util.debug( [
+                                                        'geoLocation.get',
+                                                        'geo country different from current country.',
+                                                        'changing country to',
+                                                        address_component.short_name,
+                                                        arrAddresses[ 0 ]
+                                                    ], e4.dealersearch.debug );
+                                                    e4.dealersearch.setCountryCode( address_component.short_name );
+                                                }
+                                            }
+                                        } );
+                                    } );
+                                }
+                                else {
+                                    // TODO: e4.debug
+                                    e4.dealersearch.resetAddress();
+                                    e4.dealersearch.map.logError( strStatus );
+                                }
+                            } );
+                        }, function ( error ) {
+                            // TODO: Move to gtm namespace
+                            e4.gtm.pushDataLayer( {
+                                'eventCategory': 'navigator.geolocation.getCurrentPosition',
+                                'eventAction': error.code + ': ' + error.message,
+                                'eventLabel': location.pathname,
+                                'eventValue': 0,
+                                'eventInteraction': false,
+                                'event': 'track-ga-event'
+                            } );
+                        } );
+                    }
+                },
+                form: {
+                    init: function () {
+                        e4.dealersearch.address = null;
+                        e4.dealersearch.form.bindEvents();
+                    },
+                    bindEvents: function () {
+                        jQuery( '.js-e-dealersearch-form' ).on( 'submit', function ( event ) {
+                            event.preventDefault();
+                            var jSuggestionFirst = jQuery( event.target ).find( '.js-e-dealersearch-suggestions' ).find( '.tt-selectable' ).first();
+                            if ( jSuggestionFirst.length === 1 ) {
+                                jSuggestionFirst.trigger( 'click' );
+                            }
+                            else if ( jSuggestionFirst.length === 0 ) {
+                                e4.dealersearch.geoLocation.get();
+                            }
+                        } ).on( 'click', '.js-e-dealersearch-submit', function ( event ) {
+                            jQuery( event.target.form ).triggerHandler( 'submit' );
+                        } ).on( 'click', '.js-e-dealersearch-geolocate', function ( event ) {
+                            event.preventDefault();
+                            e4.dealersearch.geoLocation.get();
+                        } );
+                        jQuery( '.js-e-dealersearch-type' ).on( 'change', function () {
+                            e4.dealersearch.reloadDealers();
+                        } );
+                        jQuery( '.js-e-dealersearch-country' ).on( 'change', function () {
+                            e4.dealersearch.setCountryAndReloadDealers();
+                        } );
+                        jQuery( '.js-e-dealersearch-address-input' ).on( 'keydown', function ( event ) {
+                            if ( event.keyCode === 13 ) {
+                                var jSuggestions = jQuery( event.target.form ).find( '.js-e-dealersearch-suggestions' ),
+                                    jSuggestionActive = jSuggestions.find( '.tt-selectable' ).filter( '.active' );
+                                if ( jSuggestionActive.length === 0 && jSuggestions.css( 'display' ) === 'block' ) {
+                                    jQuery( event.target.form ).triggerHandler( 'submit' );
+                                }
+                                else if ( jSuggestionActive.is( '.js-e-dealersearch-geolocate' ) === true ) {
+                                    jSuggestionActive.trigger( 'click' );
+                                }
+                            }
+                        } ).on( 'focus input', function () {
+                            e4.dealersearch.form.hidePlaceholder();
+                        } ).on( 'blur', function ( event ) {
+                            if ( event.target.value === '' ) {
+                                e4.dealersearch.form.showPlaceholder();
+                                e4.dealersearch.resetAddress();
+                            }
+                        } );
+                        jQuery( '.js-e-dealersearch-address-input' ).typeahead( {
+                            hint: true,
+                            highlight: true,
+                            minLength: 0,
+                            classNames: {
+                                wrapper: 'e-dealersearch-typeahead-wrapper js-e-dealersearch-typeahead-wrapper w-100',
+                                input: 'js-e-dealersearch-address-input', // https://github.com/twitter/typeahead.js/issues/677#issuecomment-48807067
+                                menu: 'js-e-dealersearch-suggestions e-dealersearch-suggestions dropdown-menu',
+                                suggestion: 'js-e-dealersearch-suggestions-item dropdown-item',
+                                open: 'open',
+                                cursor: 'active',
+                                highlight: 'active'
+                            }
+                        }, {
+                            name: 'espresso',
+                            display: 'formatted_address',
+                            limit: 8,
+                            async: true,
+                            source: function ( strQuery, fnSyncResults, fnAsyncResults ) {
+                                e4.dealersearch.form.getSuggestions( strQuery, function ( arrAddresses ) {
+                                    fnAsyncResults( arrAddresses );
+                                } );
+                            },
+                            templates: {
+                                pending: function ( jsonData ) {
+                                    return e4.handlebars.tmpl.typeaheadPending( jsonData );
+                                },
+                                footer: function ( jsonData ) {
+                                    return e4.handlebars.tmpl.typeaheadFooter( jsonData );
+                                }
+                            }
+                        } ).on( 'typeahead:autocomplete typeahead:select', function ( event, objAddress ) {
+                            if ( objAddress !== undefined ) {
+                                e4.dealersearch.searchByAddress( objAddress );
+                                jQuery( event.target ).typeahead( 'close' );
+                            }
+                        } );
+                    },
+                    getSuggestions: function ( strAddress, fnAsyncResults ) {
+                        e4.dealersearch.geocoder.geocode( {
+                            address: strAddress,
+                            componentRestrictions: {
+                                country: e4.dealersearch.getCountryCode() //https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes
+                            }
+                        }, function ( arrAddresses, strStatus ) {
+                            if ( strStatus === google.maps.GeocoderStatus.OK ) {
+                                arrAddresses = arrAddresses.filter( function ( objAddress ) {
+                                    return objAddress.address_components[ 0 ].types[ 0 ] !== 'country';
+                                } );
+                                fnAsyncResults( arrAddresses );
+                            }
+                            else {
+                                e4.dealersearch.map.logError( strStatus );
+                            }
+                        } );
+                    },
+                    setAddressInput: function ( strAddress ) {
+                        jQuery( '.js-e-dealersearch-address-input' ).typeahead( 'val', strAddress );
+                        e4.dealersearch.form.hidePlaceholder();
+                    },
+                    clearAddressInput: function () {
+                        jQuery( '.js-e-dealersearch-address-input' ).typeahead( 'val', '' );
+                        e4.dealersearch.form.showPlaceholder();
+                    },
+                    showPlaceholder: function () {
+                        jQuery( '.js-e-dealersearch-address-input-placeholder' ).removeClass( 'is-hidden' );
+                    },
+                    hidePlaceholder: function () {
+                        jQuery( '.js-e-dealersearch-address-input-placeholder' ).addClass( 'is-hidden' );
+                    }
+                },
+                map: {
+                    init: function () {
+                        e4.dealersearch.map.build( {
+                            center: e4.dealersearch.map.getCenterByCountry(),
+                            zoom: e4.dealersearch.map.getZoomByCountry(),
+                            mapTypeControl: false,
+                            scrollwheel: false,
+                            styles: e4.dealersearch.map.getStyles()
+                        } ).on( 'init', function () {
+                            e4.dealersearch.clusterer.init();
+                            e4.dealersearch.markers.init();
+                            e4.dealersearch.list.init();
+                            e4.dealersearch.map.bindEvents();
+                        } );
+                    },
+                    bindEvents: function () {
+                        e4.dealersearch.map.get().addListener( 'idle', function () {
+                            e4.util.debug( 'map idle', e4.dealersearch.debug );
+                            e4.dealersearch.list.syncWithMap();
+                            // if ( e4.util.getBreakPoint() !== 'xs' && e4.util.getBreakPoint() !== 'sm' ) {
+                            //     e4.dealersearch.list.syncWithMap();
+                            // }
+                        } );
+                        jQuery( window ).on( 'resize', e4.util.debounce( e4.dealersearch.map.refresh, e4.settings.debounceDelay.resize ) );
+                    },
+                    get: function () {
+                        // This function gets defined in require.js jQueryMapUI callback;
+                    },
+                    refresh: function () {
+                        // This function gets defined in require.js jQueryMapUI callback;
+                    },
+                    build: function ( objMapSettings, fnCallback ) {
+                        // This function gets defined in require.js jQueryMapUI callback;
+                        // Dummy use of argument to make JSLint happy;
+                        console.log( objMapSettings, fnCallback );
+                    },
+                    showInfoWindow: function ( objMarker ) {
+                        // This function gets defined in require.js jQueryMapUI callback;
+                        // Dummy use of argument to make JSLint happy;
+                        console.log( objMarker );
+                    },
+                    setBoundsFromCountry: function () {
+                        var strCountryCode = e4.dealersearch.getCountryCode();
+                        // If custom settings for center and zoom are present.
+                        if ( e4.settings.dealersearch.country[ strCountryCode ] !== undefined || strCountryCode === '' ) {
+                            e4.util.debug( ['Setting center and zoom for country(' + strCountryCode + ') from global settings.'], e4.dealersearch.debug );
+                            var gmMap = e4.dealersearch.map.get();
+                            gmMap.setCenter( e4.dealersearch.map.getCenterByCountry() );
+                            gmMap.setZoom( e4.dealersearch.map.getZoomByCountry() );
+                        }
+                        // If no center and zoom settings are present, use geocode to get values from current country.
+                        else {
+                            e4.dealersearch.geocoder.geocode( {
+                                address: '',
+                                componentRestrictions: {
+                                    country: strCountryCode //https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes
+                                }
+                            }, function ( arrAddresses, strStatus ) {
+                                if ( strStatus === google.maps.GeocoderStatus.OK ) {
+                                    var objBoundsAddress = e4.dealersearch.map.getBoundsByAddress( arrAddresses[ 0 ] );
+                                    e4.util.debug( [
+                                        'Setting center and bounds for country(' + strCountryCode + ') from Maps API',
+                                        objBoundsAddress
+                                    ], e4.dealersearch.debug );
+                                    var gmMap = e4.dealersearch.map.get();
+                                    gmMap.fitBounds( objBoundsAddress );
+                                    // gmMap.setZoom( gmMap.getZoom() + 1 );
+                                }
+                                else {
+                                    e4.dealersearch.map.logError( strStatus );
+                                }
+                            } );
+                        }
+                    },
+                    getCenterByCountry: function () {
+                        var strCountryCode = e4.dealersearch.getCountryCode();
+                        if ( e4.settings.dealersearch.country[ strCountryCode ] !== undefined ) {
+                            return new google.maps.LatLng( e4.settings.dealersearch.country[ strCountryCode ].center );
+                        }
+                        else {
+                            return new google.maps.LatLng( {
+                                lat: 51,
+                                lng: 10
+                            } );
+                        }
+                    },
+                    getZoomByCountry: function () {
+                        var strCountryCode = e4.dealersearch.getCountryCode();
+                        if ( e4.settings.dealersearch.country[ strCountryCode ] !== undefined ) {
+                            return e4.settings.dealersearch.country[ strCountryCode ].zoom;
+                        }
+                        else {
+                            return 5;
+                            // https://developers.google.com/maps/documentation/static-maps/intro#Zoomlevels
+                            // 1: World
+                            // 5: Landmass/continent
+                            // 10: City
+                            // 15: Streets
+                            // 20: Buildings
+                        }
+                    },
+                    getBoundsByAddress: function ( objAddress ) {
+                        var objAddressBounds;
+                        if ( objAddress.geometry.viewport !== undefined ) {
+                            objAddressBounds = objAddress.geometry.viewport;
+                        }
+                        else if ( objAddress.geometry.bounds !== undefined ) {
+                            objAddressBounds = objAddress.geometry.bounds;
+                        }
+                        else {
+                            objAddressBounds = new google.maps.LatLngBounds();
+                            objAddressBounds.extend( objAddress.geometry.location );
+                        }
+                        return objAddressBounds;
+                    },
+                    getMarkersInBounds: function () {
+                        var objMapBounds = e4.dealersearch.map.get().getBounds(),
+                            arrMarkersInBounds = [];
+                        jQuery.each( e4.dealersearch.data.markers, function ( intIndex, objMarker ) {
+                            if ( objMapBounds.contains( objMarker.getPosition() ) === true ) {
+                                arrMarkersInBounds.push( objMarker );
+                            }
+                        } );
+                        return arrMarkersInBounds;
+                    },
+                    extendBoundsToMarker: function ( objMarker ) {
+                        var objMapBounds = e4.dealersearch.map.get().getBounds();
+                        objMapBounds.extend( objMarker.getPosition() );
+                        e4.dealersearch.map.get().fitBounds( objMapBounds );
+                    },
+                    fitResults: function () {
+                        e4.util.debug( [
+                            'Extending bounds to fit search min markers.'
+                        ], e4.dealersearch.debug );
+                        var intMapZoom = e4.dealersearch.map.get().getZoom();
+                        // Make sure that map zoom is within min/max settings.
+                        if ( intMapZoom > e4.settings.dealersearch.results.zoom.max ) {
+                            // console.log( 'max', intMapZoom, e4.settings.dealersearch.results.zoom.max )
+                            e4.dealersearch.map.get().setZoom( e4.settings.dealersearch.results.zoom.max );
+                        }
+                        else if ( intMapZoom < e4.settings.dealersearch.results.zoom.min ) {
+                            // console.log( 'min', intMapZoom, e4.settings.dealersearch.results.zoom.min )
+                            e4.dealersearch.map.get().setZoom( intMapZoom + 1 );
+                        }
+                        // If no markers are in bounds, then extend bounds to closest marker.
+                        if ( e4.dealersearch.map.getMarkersInBounds().length === 0 ) {
+                            e4.dealersearch.map.extendBoundsToMarker( e4.dealersearch.data.markers[ 0 ] );
+                        }
+                        // While markers in bounds is below min result setting, extend bounds to closest marker.
+                        for ( var m = e4.dealersearch.map.getMarkersInBounds().length; m <= e4.settings.dealersearch.results.min; m++ ) {
+                            // Break if there is no more markers to show.
+                            if ( e4.dealersearch.data.markers.length > m ) {
+                                // If marker is within calculated sensitivity distance to previous marker, extend bounds to marker.
+                                if ( m > 0 && e4.dealersearch.data.markers[ m ].distanceToAddress < e4.dealersearch.data.markers[ m - 1 ].distanceToAddress * ( 1 + Math.pow( e4.settings.dealersearch.results.sensitivity, m ) ) ) {
+                                    e4.dealersearch.map.extendBoundsToMarker( e4.dealersearch.data.markers[ m ] );
+                                    // console.log('added',e4.dealersearch.data.markers[e4.dealersearch.getCountryCode][ m
+                                    // ].data.name);
+                                }
+                                else {
+                                    break;
+                                }
+                            }
+                            else {
+                                break;
+                            }
+                        }
+                    },
+                    getStyles: function () {
+                        var arrResult = [];
+                        if ( jQuery.isArray( e4.settings.dealersearch.map.styles ) === true ) {
+                            arrResult = e4.settings.dealersearch.map.styles;
+                        }
+                        else {
+                            e4.util.debug( 'Can not find styles for map, using default styles.', e4.dealersearch.debug );
+                        }
+                        return arrResult;
+                    },
+                    logError: function ( strError ) {
+                        e4.util.debug( [
+                            'Google Maps Error',
+                            strError
+                        ], e4.dealersearch.debug );
+                        // TODO: Move to gtm namespace
+                        e4.gtm.pushDataLayer( {
+                            'eventCategory': 'Google Maps Error',
+                            'eventAction': strError,
+                            'eventLabel': location.pathname,
+                            'eventValue': 0,
+                            'eventInteraction': false,
+                            'event': 'track-ga-event'
+                        } );
+                    }
+                },
+                clusterer: {
+                    init: function () {
+                        e4.dealersearch.clusterer.set( new MarkerClusterer( e4.dealersearch.map.get(), [], {
+                            averageCenter: true,
+                            maxZoom: e4.settings.dealersearch.clusterer.maxZoom,
+                            minimumClusterSize: e4.settings.dealersearch.clusterer.minimumClusterSize,
+                            imagePath: e4.settings.dealersearch.clusterer.imagePath
+                        } ) );
+                    },
+                    get: function () {
+                        // This function gets defined in require.js jQueryMapUI callback;
+                    },
+                    set: function ( objMarkerClusterer ) {
+                        // This function gets defined in require.js jQueryMapUI callback;
+                        // Dummy use of argument to make JSLint happy;
+                        console.log( objMarkerClusterer );
+                    }
+                },
+                markers: {
+                    init: function () {
+                        e4.util.debug( 'markers.init', e4.dealersearch.debug );
+                        e4.dealersearch.markers.build();
+                        e4.dealersearch.markers.sort();
+                        e4.dealersearch.markers.addToClusterer();
+                        e4.dealersearch.markers.bindEvents();
+                        if ( e4.dealersearch.getAddress() !== null && e4.dealersearch.map.getMarkersInBounds().length === 0 ) {
+                            e4.dealersearch.map.fitResults();
+                        }
+                    },
+                    build: function () {
+                        e4.dealersearch.data.markers = [];
+                        jQuery.each( e4.dealersearch.data.users, function ( intIndex, objUser ) {
+                            var lat = parseFloat( objUser.lat ),
+                                lng = parseFloat( objUser.lng );
+                            if ( isNaN( lat ) === true || isNaN( lng ) === true || Math.abs( lat ) > 90 || Math.abs( lng ) > 180 ) {
+                                e4.util.debug( 'lat/lng  not valid for this objUser: ' + objUser.name + '(' + objUser.id + ')', e4.dealersearch.debug );
+                            }
+                            else if ( objUser.countryCode === '' ) {
+                                e4.util.debug( 'countryCode is empty for this objUser: ' + objUser.name + '(' + objUser.id + ')', e4.dealersearch.debug );
+                            }
+                            else {
+                                objUser.distanceToAddress = 0;
+                                e4.dealersearch.data.markers.push( new google.maps.Marker( {
+                                    id: objUser.id,
+                                    position: new google.maps.LatLng( lat, lng ),
+                                    icon: e4.dealersearch.markers.getIcon( objUser ),
+                                    data: objUser
+                                } ) );
+                            }
+                        } );
+                    },
+                    sort: function () {
+                        if ( e4.dealersearch.getAddress() !== null ) {
+                            e4.dealersearch.markers.sortByDistanceToAddress();
+                        }
+                        else {
+                            e4.dealersearch.markers.sortByName();
+                        }
+                    },
+                    get: function ( strId ) {
+                        for ( var m = 0; m < e4.dealersearch.data.markers.length; m++ ) {
+                            if ( String( e4.dealersearch.data.markers[ m ].id ) === String( strId ) ) {
+                                return e4.dealersearch.data.markers[ m ];
+                            }
+                        }
+                        return null;
+                    },
+                    bindEvents: function () {
+                        jQuery.each( e4.dealersearch.data.markers, function ( intIndex, objMarker ) {
+                            google.maps.event.addListener( objMarker, 'click', function () {
+                                e4.dealersearch.map.showInfoWindow( objMarker );
+                                // TODO: Move to gtm namespace
+                                e4.gtm.pushDataLayer( {
+                                    'eventCategory': 'Forhandlerkort',
+                                    'eventAction': objMarker.data.name,
+                                    'eventLabel': location.pathname,
+                                    'eventValue': 0,
+                                    'eventInteraction': false,
+                                    'event': 'track-ga-event'
+                                } );
+                            } );
+                        } );
+                    },
+                    addToClusterer: function () {
+                        if ( e4.dealersearch.data.markers !== undefined && e4.dealersearch.data.markers.length > 0 ) {
+                            e4.dealersearch.clusterer.get().addMarkers( e4.dealersearch.data.markers );
+                            e4.util.debug( [
+                                'marker.addToClusterer',
+                                'Adding markers for country',
+                                e4.dealersearch.getCountryCode()
+                            ], e4.dealersearch.debug );
+                        }
+                        else {
+                            e4.util.debug( [
+                                'marker.addToClusterer',
+                                'No markers for country(' + e4.dealersearch.getCountryCode() + ') and/or type.'
+                            ], e4.dealersearch.debug );
+                        }
+                    },
+                    removeFromClusterer: function () {
+                        e4.util.debug( [
+                            'marker.removeFromClusterer'
+                        ], e4.dealersearch.debug );
+                        e4.dealersearch.clusterer.get().clearMarkers();
+                    },
+                    getInfoWindowContent: function ( objMarker ) {
+                        e4.util.debug( objMarker, true );
+                        return e4.handlebars.tmpl.googlemapInfowindow( objMarker.data );
+                    },
+                    showOnMap: function ( objMarker ) {
+                        var gmMap = e4.dealersearch.map.get();
+                        gmMap.panTo( objMarker.getPosition() );
+                        gmMap.setZoom( e4.settings.dealersearch.results.zoom.max - 1 );
+                        google.maps.event.trigger( objMarker, 'click' );
+                    },
+                    sortByDistanceToAddress: function () {
+                        e4.util.debug( 'markers.sortByDistanceToAddress', e4.dealersearch.debug );
+                        var objAddress = e4.dealersearch.getAddress(),
+                            lat = objAddress.geometry.location.lat(),
+                            lng = objAddress.geometry.location.lng();
+                        jQuery.each( e4.dealersearch.data.markers, function ( intIndex, objMarker ) {
+                            objMarker.data.distanceToAddress = e4.dealersearch.markers.math.getGreatCircleDistance( lat, lng, objMarker.getPosition().lat(), objMarker.getPosition().lng() );
+                            objMarker.data.distanceToAddressFormatted = e4.dealersearch.markers.math.formatDistance( objMarker.data.distanceToAddress );
+                        } );
+                        e4.dealersearch.data.markers.sort( function ( a, b ) {
+                            return a.data.distanceToAddress - b.data.distanceToAddress;
+                        } );
+                    },
+                    sortByName: function () {
+                        e4.util.debug( [
+                            'markers.sortByName'
+                        ], e4.dealersearch.debug );
+                        jQuery.each( e4.dealersearch.data.markers, function ( intIndex, objMarker ) {
+                            objMarker.data.distanceToAddress = 0;
+                        } );
+                        e4.dealersearch.data.markers.sort( function ( a, b ) {
+                            if ( a.data.name < b.data.name ) {
+                                return -1;
+                            }
+                            if ( a.data.name > b.data.name ) {
+                                return 1;
+                            }
+                            return 0;
+                        } );
+                    },
+                    getIcon: function ( objUser ) {
+                        var strReturnValue = '',
+                            strUserType,
+                            markerIconFileName;
+                        if (  objUser.type !== '' ) {
+                            strUserType = objUser.type;
+                            markerIconFileName = '';
+                            if ( e4.settings.dealersearch.marker.iconFileName[ strUserType ] !== undefined ) {
+                                markerIconFileName = e4.settings.dealersearch.marker.iconFileName[ strUserType ];
+                            }
+                            else {
+                                e4.util.debug( 'Can not find icon for user type ' + strUserType + '(' + objUser.id + ') using default icon', e4.dealersearch.debug );
+                                markerIconFileName = e4.settings.dealersearch.marker.iconFileNameDefault;
+                            }
+                            strReturnValue = e4.settings.dealersearch.marker.iconUrl + markerIconFileName;
+                        }
+                        else {
+                            e4.util.debug( [
+                                'Can not find type for user ' + objUser.name + '(' + objUser.id + '). Returning default icon.'
+                            ], e4.dealersearch.debug );
+                            markerIconFileName = e4.settings.dealersearch.marker.iconFileNameDefault;
+                        }
+                        return strReturnValue;
+                    },
+                    math: {
+                        formatDistance: function ( intNumber ) {
+                            if ( e4.dealersearch.unitSystem === 'imperial' ) {
+                                intNumber = intNumber / 1.609344;
+                            }
+                            return e4.util.formatJavascriptNumberToLocaleString( Math.round( intNumber * 100 ) / 100 );
+                        },
+                        toRadians: function ( intNumber ) {
+                            return intNumber * ( Math.PI / 180 );
+                        },
+                        getGreatCircleDistance: function ( lat1, lng1, lat2, lng2 ) {
+                            // https://en.wikipedia.org/wiki/Haversine_formula
+                            var dLat = e4.dealersearch.markers.math.toRadians( lat2 - lat1 ),
+                                dLng = e4.dealersearch.markers.math.toRadians( lng2 - lng1 ),
+                                a = Math.sin( dLat / 2 ) * Math.sin( dLat / 2 ) + Math.sin( dLng / 2 ) * Math.sin( dLng / 2 ) * Math.cos( e4.dealersearch.markers.math.toRadians( lat1 ) ) * Math.cos( e4.dealersearch.markers.math.toRadians( lat2 ) );
+                            return 6371 * ( 2 * Math.atan2( Math.sqrt( a ), Math.sqrt( 1 - a ) ) );
+                        }
+                    }
+                },
+                list: {
+                    init: function () {
+                        e4.util.debug( 'list init', e4.dealersearch.debug );
+                        e4.dealersearch.list.bindEvents();
+                        //e4.dealersearch.list.syncWithMap();
+                    },
+                    bindEvents: function () {
+                        jQuery( '.js-e-dealersearch-list' ).on( 'click', '.js-e-dealersearch-list-item', function ( event ) {
+                            e4.dealersearch.markers.showOnMap( e4.dealersearch.markers.get( jQuery( event.currentTarget ).data( 'id' ) ) );
+                        } ).on( 'click', '.js-e-dealersearch-show-map', function ( event ) {
+                            event.preventDefault();
+                            jQuery( '.js-e-dealersearch-googlemap-container' ).addClass( 'is-active' );
+                            e4.scrollToAnchor.animate( e4.scrollToAnchor.getTarget( '.js-e-dealersearch-googlemap-container' ) );
+                        } );
+                    },
+                    syncWithMap: function () {
+                        var jsonMarkersInBounds = {
+                            markers: e4.dealersearch.map.getMarkersInBounds()
+                        };
+                        e4.util.debug( 'list syncWithMap', e4.dealersearch.debug );
+                        if ( jsonMarkersInBounds.markers.length === 0 ) {
+                            jQuery( '.js-e-dealersearch-list' ).addClass( 'is-empty' ).html( '' );
+                        }
+                        else {
+                            jQuery( '.js-e-dealersearch-list' ).removeClass( 'is-empty' ).html( e4.handlebars.tmpl.markerList( jsonMarkersInBounds ) );
+                        }
+                    }
+                }
+            };
+        // }
+    
+    </script>
+  
+</head>
+
+<body>
+    <header class="header header_two">
+        <div class="header__blackline">
+            <div class="container-fluid">
+                <div class="header__blackline-wrapp">
+                    <div class="header__blackline-nav">
+                        <ul>
+                            <li><a href="#">Angela Bianca</a></li>
+                            <li class="active"><a href="#">Monica Loretti</a></li>
+                            <li><a href="#">Daniela Di Marino</a></li>
+                        </ul>
+                    </div>
+                    <div class="header__blackline-search">
+                        <span><img src="img/icon/icon-search.svg" alt="search"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header__mainsect">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-xl-2 col-lg-2">
+                        <div class="header__logo">
+                            <a href="index.html"><img src="img/logo_black.svg" alt="logo"></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-10 header__rightm">
+                        <div class="row">
+                            <div class="col-xl-9 col-lg-9">
+                                <div class="closemenu-btn"><img src="img/icon/close.svg" alt="close"></div>
+                                <nav class="header__menu">
+                                    <ul>
+                                        <li class="active"><a href="#">Wedding Dresses</a></li>
+                                        <li><a href="#">Events</a></li>
+                                        <li><a href="#">Find a store</a></li>
+                                        <li><a href="#">About us</a></li>
+                                        <li><a href="#">Contacts</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="col-xl-3 col-lg-3">
+                                <div class="header__login">
+                                    <div class="header__loginbtn">
+                                        <span>Log in</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="burgermenu-btn">
+                        <img src="img/icon/burger-icon.svg" alt="menu">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container-fluid">
+            <div class="breadcrumbs">
+                <ul>
+                    <li><a href="#"><img src="img/icon/icon-home.svg" alt="home"></a></li>
+                    <li><span>Find a store</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container-fluid ">
+            <h1 class="page-title">Find a store</h1>
+        </div>
+
+        <section class="find-store">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="find-store__sidebar col-xl-4">
+                        asdfasfasd
+                    </div>
+                    <div class="col">
+                        <div class=" find-store__map">
+                            <div id="map" class="e-dealersearch-googlemap js-e-dealersearch-googlemap"></div>
+    
+                            <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+                            <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApj8qSzyO4DqXeQtFQPKI4mi6p-MBwlpo&callback=initMap&libraries=&v=weekly" async></script> -->
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="footer__content">
+                <div class="footer__logo">
+                    <a href="index.html"><img src="img/logo_black.svg" alt="logo"></a>
+                    <p>ALL RIGHT RESERVED</p>
+                </div>
+                <div class="footer__menu">
+                    <p class="footer__title">MENU</p>
+                    <ul>
+                        <li><a href="#">Wedding Dresses</a></li>
+                        <li><a href="#">Find a store</a></li>
+                        <li><a href="#">Contacts</a></li>
+                        <li><a href="#">Events</a></li>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Log in</a></li>
+                    </ul>
+                </div>
+                <div class="footer__contacts">
+                    <p class="footer__title">CONTACTS</p>
+                    <ul>
+                        <li><a class="footadrlink" href="#">3015 73rd St. Atkins IA 52206</a></li>
+                        <li><a class="foottellink" href="#">(319) 446-7887 Johanna</a></li>
+                    </ul>
+                </div>
+                <div class="footer__social">
+                    <p class="footer__title">SOCIAL</p>
+                    <ul>
+                        <li class="footer-fb">
+                            <a href="#" target="_blank">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M17.0703 0H2.92969C1.31439 0 0 1.31439 0 2.92969V17.0703C0 18.6856 1.31439 20 2.92969 20H8.82812V12.9297H6.48438V9.41406H8.82812V7.03125C8.82812 5.09262 10.4051 3.51562 12.3438 3.51562H15.8984V7.03125H12.3438V9.41406H15.8984L15.3125 12.9297H12.3438V20H17.0703C18.6856 20 20 18.6856 20 17.0703V2.92969C20 1.31439 18.6856 0 17.0703 0Z"
+                                        fill="#3C3C3E" />
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="footer-yt">
+                            <a href="#" target="_blank">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M19.5879 5.19067C19.3575 4.33405 18.6819 3.65879 17.8252 3.42813C16.2602 3 9.99977 3 9.99977 3C9.99977 3 3.73963 3 2.17456 3.41189C1.33435 3.64231 0.642335 4.33417 0.411866 5.19067C0 6.75525 0 10 0 10C0 10 0 13.2611 0.411866 14.8093C0.642579 15.6658 1.31787 16.3411 2.17469 16.5718C3.75611 17 10 17 10 17C10 17 16.2602 17 17.8252 16.5881C18.682 16.3576 19.3575 15.6823 19.5882 14.8258C19.9999 13.2611 19.9999 10.0165 19.9999 10.0165C19.9999 10.0165 20.0164 6.75525 19.5879 5.19067ZM8.00661 12.9976V7.00239L13.2124 10L8.00661 12.9976Z"
+                                        fill="#3C3C3E" />
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="footer-ins">
+                            <a href="#" target="_blank">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M17.0703 0H2.92969C1.31439 0 0 1.31439 0 2.92969V17.0703C0 18.6856 1.31439 20 2.92969 20H17.0703C18.6856 20 20 18.6856 20 17.0703V2.92969C20 1.31439 18.6856 0 17.0703 0ZM10.0391 15.2344C7.1312 15.2344 4.76562 12.8688 4.76562 9.96094C4.76562 7.05307 7.1312 4.6875 10.0391 4.6875C12.9469 4.6875 15.3125 7.05307 15.3125 9.96094C15.3125 12.8688 12.9469 15.2344 10.0391 15.2344ZM15.8984 5.85938C14.9292 5.85938 14.1406 5.0708 14.1406 4.10156C14.1406 3.13232 14.9292 2.34375 15.8984 2.34375C16.8677 2.34375 17.6562 3.13232 17.6562 4.10156C17.6562 5.0708 16.8677 5.85938 15.8984 5.85938Z"
+                                        fill="#3C3C3E" />
+                                    <path
+                                        d="M15.8984 3.51562C15.5751 3.51562 15.3125 3.77823 15.3125 4.10156C15.3125 4.4249 15.5751 4.6875 15.8984 4.6875C16.2218 4.6875 16.4844 4.4249 16.4844 4.10156C16.4844 3.77823 16.2218 3.51562 15.8984 3.51562Z"
+                                        fill="#3C3C3E" />
+                                    <path
+                                        d="M10.0391 5.85938C7.77771 5.85938 5.9375 7.69958 5.9375 9.96094C5.9375 12.2223 7.77771 14.0625 10.0391 14.0625C12.3004 14.0625 14.1406 12.2223 14.1406 9.96094C14.1406 7.69958 12.3004 5.85938 10.0391 5.85938Z"
+                                        fill="#3C3C3E" />
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="footer-pint">
+                            <a href="#" target="_blank">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M4.80247 10.8679C4.8275 10.8055 5.07789 9.84329 5.09544 9.77814C4.70451 9.18991 4.27025 7.26364 4.60335 5.70007C4.96269 3.40591 7.39387 2.27814 9.68925 2.27814V2.27386C12.5631 2.2757 14.7143 3.87466 14.7166 6.62842C14.7184 8.78387 13.4199 11.633 11.2026 11.633C11.202 11.633 11.2016 11.633 11.2009 11.633C10.4096 11.633 9.40773 11.2741 9.14497 10.9216C8.84178 10.5154 8.76732 10.0142 8.92753 9.47861C9.32014 8.2254 9.82078 6.72424 9.87922 5.72327C9.93339 4.77859 9.26307 4.16397 8.39378 4.16397C7.73964 4.16397 6.89003 4.54391 6.4666 5.61157C6.11686 6.49857 6.12434 7.42722 6.48948 8.45032C6.63185 8.85025 5.85838 11.4575 5.61058 12.3065C4.99489 14.4156 4.15199 17.084 4.3322 18.5701L4.50615 20L5.37986 18.855C6.58897 17.2722 7.83912 13.1779 8.17222 12.1817C9.15703 13.457 11.2078 13.4937 11.4469 13.4937C14.3838 13.4937 17.714 10.5774 17.6195 6.51855C17.5367 2.95914 14.9317 0 10.2511 0V0.00457766C5.79887 0.00457766 3.2003 2.38098 2.56416 5.38361C1.98158 8.16772 3.2772 10.2867 4.80247 10.8679Z"
+                                        fill="#3C3C3E" />
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+   
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/slick.min.js"></script>
+    <script src="js/select2.min.js"></script>
+    <script src="js/common.js"></script>
+
+
+</body>
+
+</html>
