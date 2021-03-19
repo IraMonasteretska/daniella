@@ -1,0 +1,514 @@
+/* PRODUCT */
+
+.product-topsection 
+    padding-top: 110px
+    padding-bottom: 180px
+    +mq(xxl)
+        padding-bottom: 80px
+        padding-top: 40px
+    +mq(md)
+        padding-bottom: 50px
+    +mq(sm)
+        padding-bottom: 20px
+
+
+.product__slider img 
+    max-width: 100%
+
+
+.product__slider .littsl 
+    width: 100%
+    flex: 0 0 178px
+    max-width: 178px
+    padding-right: 24px
+    +mq(xxl)
+        flex: 0 0 150px
+        max-width: 150px
+        padding-right: 15px
+    +mq(1400px)
+        flex: 0 0 120px
+        max-width: 120px
+        padding-right: 15px
+    +mq(sm)
+        display: none
+
+
+.product__slider .bigsl 
+    -ms-flex-preferred-size: 0
+    flex-basis: 0
+    -ms-flex-positive: 1
+    flex-grow: 1
+    max-width: calc(100% - 178px)
+    padding-top: 12px
+    +mq(1400px)
+        max-width: calc(100% - 120px)
+    +mq(sm)
+        max-width: 100%
+
+.littsl .slick-slide img 
+    padding: 12px
+    transition: .3s
+    -webkit-transition: .3s
+    -moz-transition: .3s
+    -ms-transition: .3s
+    -o-transition: .3s
+
+
+.littsl .slick-slide,
+.littsl .slick-slide[aria-hidden="true"]:not(.slick-cloned)~.slick-cloned[aria-hidden="true"] 
+    border: 1px solid transparent
+    transition: 0.3s
+    -webkit-transition: 0.3s
+    -moz-transition: 0.3s
+    -ms-transition: 0.3s
+    -o-transition: 0.3s
+
+
+.littsl .slick-center,
+.littsl .slick-slide[aria-hidden="true"]:not([tabindex="-1"])+.slick-cloned[aria-hidden="true"] 
+    border: 1px solid #28282C
+
+
+.littsl .slick-slide 
+    margin-bottom: 12px
+
+
+.littsl .slick-list 
+    padding-top: 12px
+
+
+.littsl .slick-slide.slick-current.slick-active img 
+    border: 1px solid #28282C
+
+
+.product__descr 
+    padding-top: 12px
+    position: relative
+    +mq(lg)
+        margin-top: 25px
+
+
+.product__descr .collection 
+    margin-bottom: 25px
+    letter-spacing: 0.14em
+    color: #28282C
+    font-size: 22px
+    line-height: 30px
+    +mq(xxl)
+        line-height: normal
+        margin-bottom: 15px
+    +mq(xl)
+        font-size: 16px
+    +mq(sm)
+        font-size: 14px
+
+.product__descr .name 
+    margin-bottom: 95px
+    font-family: 'Playfair Display', serif
+    font-size: 34px
+    line-height: 140%
+    letter-spacing: 0.08em
+    color: #28282C
+    +mq(xxl)
+        font-size: 28px
+        margin-bottom: 60px
+    +mq(xl)
+        font-size: 24px
+        margin-bottom: 40px
+    +mq(lg)
+        font-size: 32px
+    +mq(sm)
+        font-size: 26px
+
+.product__descr .colors .colors__title 
+    margin-bottom: 30px
+    font-size: 22px
+    line-height: 29px
+    letter-spacing: 0.14em
+    color: #28282C
+    font-family: 'Playfair Display', serif
+    +mq(xxl)
+        margin-bottom: 15px
+        font-size: 18px
+    +mq(xl)
+        font-size: 16px
+        line-height: normal
+
+
+
+.colors__box 
+    .color-circle 
+        display: inline-block
+        width: 80px
+        height: 80px
+        border-radius: 50%
+        -webkit-border-radius: 50%
+        -moz-border-radius: 50%
+        -ms-border-radius: 50%
+        -o-border-radius: 50%
+        box-shadow: 0px 100px 113px rgba(0, 0, 0, 0.16), 0px 12.5216px 14.1494px rgba(0, 0, 0, 0.08)
+        +mq(xxl)
+            width: 60px
+            height: 60px
+        +mq(xl)
+            width: 40px
+            height: 40px
+        
+    .color-name
+        +mq(xxl)
+            font-size: 14px
+
+.ivory-color 
+    background: #F7EFF1
+
+
+.nudeivory-color 
+    background: #FCFAFA
+
+
+.colors__boxes 
+    display: flex
+    margin-bottom: 60px
+    +mq(xxl)
+        margin-bottom: 30px
+    +mq(xl)
+        margin-bottom: 20px
+
+.colors__box 
+    margin: 0 22px 12px 22px
+    text-align: center
+    +mq(xxl)
+        margin: 0 15px 5px 15px
+
+.colors__box input[type="radio"] 
+    display: none
+
+
+.product__descr .btns-box 
+    display: flex
+    justify-content: space-between
+    max-width: 648px
+    margin-bottom: 80px
+    +mq(xxl)
+        max-width: 550px
+    +mq(xl)
+        margin-bottom: 40px
+        flex-wrap: wrap
+    +mq(lg)
+        max-width: 500px
+
+.product__descr .btns-box .bluebtn 
+    width: 305px
+    height: 64px
+    +mq(xxl)
+        width: 255px
+        height: 55px
+        font-size: 14px
+    +mq(xl)
+        width: 230px
+        height: 44px
+        font-size: 14px
+        margin-bottom: 10px
+
+.product__descr .btns-box .bluebtn_transparent span:before 
+    display: none
+
+
+.product__descr .btns-box .bluebtn_transparent svg 
+    margin-right: 8px
+    +mq(xxl)
+        width: 22px
+        height: 22px
+        margin-right: 5px
+
+
+.product__descr .btns-box .bluebtn_transparent svg path 
+    transition: .3s
+    -webkit-transition: .3s
+    -moz-transition: .3s
+    -ms-transition: .3s
+    -o-transition: .3s
+
+
+.product__descr .btns-box .bluebtn_transparent:hover svg path 
+    fill: #fff
+
+
+.prod-icons 
+    width: 111px
+    display: flex
+    align-items: center
+    justify-content: space-between
+    position: absolute
+    right: 0
+    top: 12px
+    +mq(xxl)
+        width: 80px
+    +mq(xl)
+        width: 60px
+        top: 9px
+
+    svg 
+        +mq(xxl)
+            width: 20px
+        +mq(xl)
+            width: 17px
+
+.prod-icons button 
+    padding: 0
+    border: none
+    background-color: transparent
+    outline: none
+
+
+.prod-icons button svg path 
+    transition: .3s
+    -webkit-transition: .3s
+    -moz-transition: .3s
+    -ms-transition: .3s
+    -o-transition: .3s
+
+
+.prod-icons .share:hover svg path 
+    fill: #2e6cb8
+
+
+.prod-icons .favorite:hover svg path,
+.prod-icons .favorite.active svg path 
+    fill: red
+    stroke: red
+
+
+.descr-accordeon__sect 
+    border-bottom: 1px solid #9E9E9E
+    margin-bottom: 36px
+    +mq(xxl)
+        margin-bottom: 20px
+
+
+.descr-accordeon__sect .title 
+    font-size: 22px
+    line-height: 29px
+    letter-spacing: 0.14em
+    color: #28282C
+    font-family: 'Playfair Display', serif
+    margin: 0 0 24px
+    position: relative
+    padding-right: 40px
+    cursor: pointer
+    +mq(xxl)
+        font-size: 18px
+        margin: 0 0 15px
+    +mq(xl)
+        font-size: 16px
+
+.descr-accordeon__sect .title:after 
+    content: ''
+    display: inline-block
+    width: 16px
+    height: 7px
+    background-image: url('../img/icon/accordeot-trig.svg')
+    background-repeat: no-repeat
+    background-position: center
+    position: absolute
+    right: 0
+    top: 50%
+    transform: translateY(-50%) rotate(-180deg)
+    -webkit-transform: translateY(-50%) rotate(-180deg)
+    -moz-transform: translateY(-50%) rotate(-180deg)
+    -ms-transform: translateY(-50%) rotate(-180deg)
+    -o-transform: translateY(-50%) rotate(-180deg)
+
+
+.descr-accordeon__sect .descr 
+    padding-top: 5px
+    margin-bottom: 24px
+    display: none
+
+
+.descr-accordeon__sect:first-child .descr 
+    display: block
+
+
+.descr-accordeon__sect .descr p,
+.descr-accordeon__sect .descr ul li 
+    font-size: 18px
+    line-height: 160%
+    color: #28282C
+    +mq(xxl)
+        font-size: 16px
+    +mq(xl)
+        font-size: 14px
+
+.descr-accordeon__sect .descr p:last-child 
+    margin-bottom: 0
+
+
+.descr-accordeon__sect .descr ul 
+    list-style-type: none
+    padding: 0
+    margin: 0
+
+
+.descr-accordeon__sect .descr ul li 
+    display: flex
+    margin-bottom: 5px
+
+
+.descr-accordeon__sect .descr ul li .charact-title 
+    width: 100%
+    max-width: 30%
+    flex: 0 0 30%
+    font-weight: 600
+
+
+.descr-accordeon__sect .descr ul li .charact-descr 
+    width: 100%
+    max-width: 70%
+    flex: 0 0 70%
+
+
+.descr-accordeon__sect.open .title:after 
+    transform: translateY(-50%) rotate(0deg)
+    -webkit-transform: translateY(-50%) rotate(0deg)
+    -moz-transform: translateY(-50%) rotate(0deg)
+    -ms-transform: translateY(-50%) rotate(0deg)
+    -o-transform: translateY(-50%) rotate(0deg)
+
+
+.product__slider .bigsl img 
+    cursor: url('../img/icon/loop.svg') 20 20, zoom-in
+
+
+.alsolike__slider 
+    width: calc(100% + 30px)
+    margin-left: -15px
+    padding-bottom: 95px
+    +mq(xl)
+        padding-bottom: 65px
+
+.alsolike__slider .categ_item 
+    padding: 0 15px
+    margin: 0
+
+
+.alsolike-sliderwrap 
+    position: relative
+
+
+.alsolike__slider .slick-arrow.slick-next,
+.alsolike__slider .slick-arrow.slick-prev 
+    transition: .3s
+    -webkit-transition: .3s
+    -moz-transition: .3s
+    -ms-transition: .3s
+    -o-transition: .3s
+
+
+.alsolike__slider .slick-arrow.slick-prev 
+    left: 15px
+
+
+.alsolike__slider .slick-arrow 
+    position: absolute
+    bottom: 0
+    z-index: 2
+    border: none
+    padding: 0
+    outline: none
+    background: transparent
+    text-transform: uppercase
+    font-family: 'Open Sans', sans-serif
+    color: #28282C
+    letter-spacing: 0.14em
+    font-size: 18px
+    line-height: 25px
+    +mq(xxl)
+        font-size: 16px
+    +mq(xl)
+        font-size: 14px
+
+
+.alsolike__slider .slick-arrow.slick-next 
+    left: 255px
+    +mq(xl)
+        left: 180px
+    +mq(md)  
+        left: 150px
+
+.alsolike__slider .slick-arrow.slick-next:before 
+    content: ''
+    display: inline-block
+    height: 1px
+    width: 144px
+    background: #28282C
+    position: absolute
+    top: 48%
+    transform: translateX(-167px)
+    -webkit-transform: translateX(-167px)
+    -moz-transform: translateX(-167px)
+    -ms-transform: translateX(-167px)
+    -o-transform: translateX(-167px)
+    +mq(xl)
+        width: 100px
+        transform: translateX(-113px)
+        -webkit-transform: translateX(-113px)
+        -moz-transform: translateX(-113px)
+        -ms-transform: translateX(-113px)
+        -o-transform: translateX(-113px)
+    +mq(md)  
+        width: 65px
+        transform: translateX(-82px)
+        -webkit-transform: translateX(-82px)
+        -moz-transform: translateX(-82px)
+        -ms-transform: translateX(-82px)
+        -o-transform: translateX(-82px)
+
+
+.alsolike__slider .slick-arrow.slick-next:hover,
+.alsolike__slider .slick-arrow.slick-prev:hover 
+    opacity: .6
+
+
+.alsolike-sliderwrap .pagingInfo 
+    bottom: 0
+    right: 0
+
+
+.also-like 
+    padding-bottom: 70px
+
+.product__slider 
+    .bigsl 
+        .slick-dots
+            +mq(md)
+                padding: 0
+                margin: 10px 0 0 0
+                list-style-type: none
+                text-align: center
+        li
+            +mq(md)
+                display: inline-block
+                margin: 0 5px
+            button 
+                +mq(md)
+                    -webkit-touch-callout: none
+                    -webkit-user-select: none
+                    -khtml-user-select: none
+                    -moz-user-select: none
+                    -ms-user-select: none
+                    user-select: none
+                    color: transparent
+                    padding: 0
+                    outline: none
+                    border: none
+                    background: $dn_main
+                    border: 1px solid $dn_main
+                    width: 30px
+                    height: 4px
+                    overflow: hidden
+
+            &.slick-active
+                button 
+                    +mq(md)
+                        background: #fff

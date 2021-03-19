@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+
+body 
+    font-family: 'Open Sans', sans-serif
+    overflow-x: hidden
+    max-width: 2400px
+    margin: 0 auto
+
+
+a:hover 
+    text-decoration: none
+
+
+.container-fluid 
+    padding-left: 130px
+    padding-right: 130px
+
+
+.bluebtn 
+    width: 305px
+    height: 65px
+    text-transform: uppercase
+    background: $dn_main
+    border: 1px solid $dn_main
+    border-radius: 6px
+    display: flex
+    align-items: center
+    justify-content: center
+    color: #fff
+    font-family: 'Open Sans', sans-serif
+    letter-spacing: 0.14em
+    font-size: 18px
+    line-height: 25px
+    transition: .5s
+    -webkit-transition: .5s
+    -moz-transition: .5s
+    -ms-transition: .5s
+    -o-transition: .5s
+    +mq(xxl)
+        font-size: 16px
+        width: 240px
+        height: 55px
+    +mq(xl)
+        font-size: 14px
+        width: 200px
+        height: 48px
+    +mq(md)
+        width: 175px
+        height: 44px
+
+    &:hover 
+        color: #28282C
+        background: #fff
+    
+    &_transparent
+        background: #ffffff
+        color: $dn_main
+        &:hover 
+            color: #ffffff
+            background: $dn_main
+    
+img 
+    max-width: 100%
+
+
+main 
+    padding-bottom: 108px
+
+
+.section-subtitle 
+    margin: 0
+    text-transform: uppercase
+    font-family: 'Open Sans', sans-serif
+    font-size: 20px
+    line-height: 27px
+    color: #9E9E9E
+    text-align: center
+    margin-bottom: 21px
+    &_left
+        text-align-last: left
+
+.section-title 
+    font-family: 'Playfair Display', serif
+    letter-spacing: 0.14em
+    text-transform: uppercase
+    color: #28282C
+    font-size: 54px
+    line-height: 88px 
+    position: relative
+    text-align: center
+    margin: 0
+
+.section-title:after 
+    content: '' 
+    display: inline-block
+    position: absolute
+    bottom: -18px
+    left: 0
+    right: 0
+    width: 128px
+    height: 1px
+    background: #28282C
+    margin: 0 auto
+
+
+.section-head 
+    margin-bottom: 110px
+

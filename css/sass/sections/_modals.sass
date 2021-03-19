@@ -1,0 +1,758 @@
+
+/* login */
+.loginpopup .modal-dialog 
+    max-width: 1096px
+    +mq(xxl)
+        max-width: 800px
+    +mq(lg)
+        max-width: 600px
+    +mq(md)
+        max-width: 550px
+
+.loginpopup .modal-content 
+    border: none
+    border-radius: 0
+
+
+.loginpopup .modal-body 
+    padding: 0
+
+
+.loginpopup .loginsect 
+    display: flex
+
+
+.loginpopup .leftpic 
+    width: 100%
+    max-width: 422px
+    flex: 0 0 422px
+    +mq(xxl)
+        max-width: 300px
+        flex: 0 0 300px
+    +mq(lg)
+        max-width: 250px
+        flex: 0 0 250px
+    +mq(sm)  
+        display: none
+
+    img 
+        height: 100%
+        position: absolute
+        width: 100%
+        object-fit: cover
+        object-position: 0 0
+        +mq(lg) 
+            object-position: top center
+
+.loginpopup .right-sect 
+    padding: 55px 110px
+    +mq(xxl)
+        padding: 40px 50px
+    +mq(lg)
+        padding: 40px 30px
+
+.loginpopup .title 
+    text-align: center
+    letter-spacing: 0.14em
+    text-transform: uppercase
+    color: #28282C
+    font-size: 44px
+    line-height: 88px
+    font-family: 'Playfair Display', serif
+    margin-bottom: 22px
+    +mq(xxl)
+        line-height: normal
+        font-size: 28px
+        margin-bottom: 20px
+    +mq(lg)
+        font-size: 24px
+
+.loginpopup form .inpfield input 
+    width: 100%
+    height: 67px
+    outline: none
+    border: none
+    border-bottom: 1px solid #28282C
+    padding-left: 30px
+    font-size: 20px
+    line-height: 27px
+    font-family: 'Open Sans', sans-serif
+    color: rgba(40, 40, 44, 0.6)
+    +mq(xxl)
+        height: 50px
+        font-size: 16px
+        padding-left: 20px
+        
+    +mq(lg)
+        height: 40px
+        font-size: 14px
+        padding-left: 0
+
+
+.loginpopup form .inpfield input::placeholder 
+    color: rgba(40, 40, 44, 0.6)
+
+
+.loginpopup form .inpfield 
+    position: relative
+    margin-bottom: 14px
+
+
+.loginpopup form .inpfield .showpass 
+    position: absolute
+    right: 0
+    top: 50%
+    transform: translateY(-50%)
+    -webkit-transform: translateY(-50%)
+    -moz-transform: translateY(-50%)
+    -ms-transform: translateY(-50%)
+    -o-transform: translateY(-50%)
+    cursor: pointer
+
+
+.loginpopup form .inpfield input[type="checkbox"] 
+    display: none
+
+
+.loginpopup .inpfield.check 
+    margin-top: 34px
+    +mq(xxl)
+        margin-top: 20px
+
+.loginpopup .inpfield.check label 
+    margin: 0
+    font-size: 20px
+    line-height: 27px
+    color: #28282C
+    position: relative
+    padding-left: 32px
+    cursor: pointer
+    +mq(xxl)
+        font-size: 16px
+        padding-left: 25px
+    +mq(lg)
+        font-size: 14px
+        line-height: normal
+
+.loginpopup .inpfield.check label:before 
+    content: ''
+    display: inline-block
+    width: 19px
+    height: 19px
+    border: 1px solid #28282C
+    position: absolute
+    left: 0
+    top: 50%
+    transform: translateY(-50%)
+    -webkit-transform: translateY(-50%)
+    -moz-transform: translateY(-50%)
+    -ms-transform: translateY(-50%)
+    -o-transform: translateY(-50%)
+    +mq(xxl)
+        width: 16px
+        height: 16px
+
+.loginpopup .inpfield.check input:checked+label:before 
+    background-image: url('../img/icon/checkicon.svg')
+    background-repeat: no-repeat
+    background-position: center
+    background-size: 100%
+
+
+.loginpopup .bluebtn.logsubm 
+    margin-top: 34px
+    width: 100%
+    margin-bottom: 24px
+    height: 64px
+    +mq(xxl)
+        margin-top: 25px
+        height: 54px
+    +mq(lg)
+        margin-top: 20px
+        height: 46px
+        margin-bottom: 15px
+
+.loginpopup .justfield 
+    display: flex
+    align-items: center
+    justify-content: space-between
+    margin-bottom: 19px
+    +mq(md)
+        flex-wrap: wrap
+        margin-bottom: 10px
+
+
+.loginpopup .justfield span 
+    cursor: pointer
+    text-decoration: underline
+    display: inline-block
+    color: #28282C
+    font-size: 16px
+    line-height: 21px
+    text-align: center
+    letter-spacing: 0.18em
+    font-family: 'Playfair Display', serif
+
+
+.loginpopup .justfield span:hover 
+    text-decoration: none
+
+
+.or 
+    text-align: center
+    letter-spacing: 0.14em
+    color: #28282C
+    font-size: 44px
+    line-height: 44px
+    font-family: 'Playfair Display', serif
+    margin-bottom: 0
+    +mq(xxl)
+        font-size: 32px
+        line-height: normal
+    +mq(md)
+        font-size: 22px
+
+.loginpopup .reglink 
+    width: 100%
+    margin-top: 60px
+    +mq(xxl)
+        margin-top: 25px
+        height: 54px
+    +mq(lg)
+        margin-top: 20px
+        height: 46px
+    +mq(md)
+        margin-top: 15px
+    
+    
+
+.loginpopup button.close 
+    position: absolute
+    right: 36px
+    top: 36px
+    opacity: 1
+    outline: none
+    z-index: 2
+    +mq(xxl)
+        right: 16px
+        top: 16px
+    +mq(lg)
+        right: 12px
+        top: 12px
+        
+    img 
+        +mq(xxl)
+            width: 18px
+    svg
+        +mq(xxl)
+            width: 18px
+        path
+            +mq(md)
+                fill: #28282C
+.loginpopup .modal-content 
+    margin: 0 auto
+
+
+.loginpopup .descr 
+    text-align: center
+    font-size: 18px
+    line-height: 140%
+    font-family: 'Playfair Display', serif
+    letter-spacing: 0.18em
+    color: #28282C
+    margin-bottom: 45px
+    +mq(xxl)
+        font-size: 16px
+        margin-bottom: 20px
+    +mq(lg)
+        font-size: 14px
+
+.loginpopup .mc-cont .right-sect 
+    padding: 90px 108px 58px 50px
+    +mq(xxl)
+        padding: 40px 50px
+    +mq(lg)
+        padding: 40px 30px
+
+.loginpopup .select-wrapper 
+    margin-left: 0
+    width: 100%
+    +mq(lg)
+        width: 145px
+        margin-left: 20px
+    +mq(md)
+        padding: 0
+        max-width: 100% !important
+        width: 100% !important
+    +mq(sm)
+        margin-left: 0
+        padding: 0 0px
+
+.loginpopup .select-wrapper .select2-container--default .select2-selection--single 
+    height: 67px
+    display: flex
+    align-items: center
+    +mq(xxl)
+        height: 50px
+    +mq(lg)
+        height: 40px
+        display: flex
+        align-items: center
+
+.loginpopup .select-wrapper .select2-container--default .select2-selection--single .select2-selection__arrow 
+    top: 50%
+    transform: translateY(-50%)
+
+
+.loginpopup .select-wrapper .select2-container--default .select2-selection--single .select2-selection__rendered 
+    padding-left: 30px
+    font-size: 20px
+    line-height: 27px
+    font-family: 'Open Sans', sans-serif
+    color: rgba(40, 40, 44, 0.6)
+    +mq(xxl)
+        font-size: 16px
+        padding-left: 20px
+    +mq(lg)
+        font-size: 14px
+        padding-left: 0
+
+.row-two .col-md-6:nth-child(odd) 
+    padding-right: 25px
+    +mq(xxl)
+        padding-right: 15px
+ 
+.row-two .col-md-6:nth-child(even) 
+    padding-left: 25px
+    +mq(xxl)
+        padding-left: 15px
+
+.loginpopup .mc-cont form .inpfield 
+    margin-bottom: 30px
+    +mq(xxl)
+        margin-bottom: 14px
+
+.loginpopup form textarea 
+    margin-top: 20px
+    resize: none
+    width: 100%
+    border: 1px solid #28282C
+    height: 108px
+    padding: 18px 30px
+    font-size: 20px
+    line-height: 27px
+    color: rgba(40, 40, 44, 0.6)
+    outline: none
+    font-family: 'Open Sans', sans-serif
+    +mq(xxl)
+        font-size: 16px
+        padding: 10px 20px
+        height: 90px
+    +mq(lg)
+        font-size: 14px
+
+.loginpopup .mc-cont form textarea
+    +mq(lg)
+        margin-top: 10px
+
+.loginpopupform textarea::placeholder 
+    color: rgba(40, 40, 44, 0.6)
+    font-family: 'Open Sans', sans-serif
+
+
+.loginpopup .mc-cont .bluebtn 
+    margin: 25px auto 0
+    outline: none
+    width: 100%
+    max-width: 340px
+    +mq(xxl)
+        height: 54px
+        max-width: 100%
+    +mq(lg)
+        height: 46px
+        margin-top: 20px
+
+.loginpopup .mc-reg .leftpic 
+    order: 2
+    max-width: 367px
+    flex: 0 0 367px
+    +mq(xxl)
+        max-width: 300px
+        flex: 0 0 300px
+    +mq(lg)
+        max-width: 250px
+        flex: 0 0 250px
+
+.loginpopup .mc-reg .title 
+    margin-bottom: 10px
+
+
+.loginpopup .mc-reg .right-sect 
+    padding: 20px 43px 80px 74px
+    order: 1
+    +mq(xxl)
+        padding: 20px 30px 40px 30px
+
+.loginpopup .mc-reg form .inpfield 
+    margin-bottom: 20px
+    +mq(xxl)
+        margin-bottom: 14px
+
+.loginpopup .mc-reg form textarea 
+    margin-bottom: 20px
+    +mq(xxl)
+        padding: 10px 20px
+        height: 90px
+    +mq(lg)
+        font-size: 14px
+        margin-top: 10px
+
+.loginpopup .mc-reg .inpfield.check label,
+.loginpopup .mc-reg .inpfield.check label a 
+    font-size: 18px
+    line-height: 25px
+    color: #28282C
+    +mq(xxl)
+        font-size: 14px
+        line-height: normal
+
+.loginpopup .mc-reg .inpfield.check label a 
+    text-decoration: underline
+
+
+.loginpopup .mc-reg .inpfield.check label a:hover 
+    text-decoration: none
+
+
+.loginpopup .mc-reg .inpfield.check 
+    margin: 0
+
+.loginpopup .mc-reg .select-wrapper
+    +mq(lg)
+        margin-left: 0
+.loginpopup .mc-cont .select-wrapper
+    +mq(lg)
+        margin-left: 0
+
+.regbottbtns span:not(.bluebtn span) 
+    text-align: center
+    letter-spacing: 0.14em
+    color: #28282C
+    display: inline-block
+    font-size: 22px
+    line-height: 36px
+    font-family: 'Playfair Display', serif
+    +mq(xxl)
+        font-size: 18px
+    +mq(lg)
+        font-size: 16px
+        display: block
+        text-align: center
+        width: 100%
+
+.regbottbtns .bluebtn 
+    height: 64px
+    width: 280px
+    outline: none
+    +mq(xxl)
+        height: 54px
+        width: 190px
+        font-size: 14px
+    +mq(lg)
+        width: 100%
+        height: 46px
+
+.regbottbtns 
+    display: flex
+    align-items: center
+    justify-content: space-between
+    margin-top: 60px
+    +mq(xxl)
+        flex-wrap: wrap
+        margin-top: 30px
+
+.loginpopup .leftpic 
+    position: relative
+    overflow: hidden
+
+
+.mc-forgotpass .title 
+    line-height: normal
+
+
+button,
+button:focus 
+    outline: none
+
+
+.search-form__field input[type="text"] 
+    padding-right: 35px
+
+
+.loginpopup form .inpfield input[type="password"] 
+    padding-right: 30px
+
+
+input[type="password"]::-ms-clear,
+input[type="password"]::-ms-reveal 
+    display: none
+
+
+input[type=password]::-webkit-contacts-auto-fill-button,
+input[type=password]::-webkit-credentials-auto-fill-button 
+    visibility: hidden
+    display: none !important
+    pointer-events: none
+    height: 0
+    width: 0
+    margin: 0
+
+
+.mc-cont,
+.mc-reg,
+.mc-forgotpass 
+    display: none
+
+
+
+/* search */
+
+.search-wrapper 
+    position: fixed
+    width: 100%
+    height: 100vh
+    left: 0
+    top: 0
+    background-color: #fff
+    z-index: 11
+    padding-top: 16vh
+    display: none
+
+
+.search-form 
+    max-width: 1070px
+    width: 100%
+    margin: 0 auto
+    padding: 119px 128px 180px
+    position: relative
+
+
+.search-form .title 
+    font-family: 'Playfair Display', serif
+    letter-spacing: 0.18em
+    color: #28282C
+    font-size: 20px
+    line-height: 27px
+    margin-bottom: 8px
+
+
+.search-form__field input[type="text"] 
+    width: 100%
+    height: 70px
+    outline: none
+    border: none
+    border-bottom: 1px solid #9E9E9E
+    font-size: 20px
+    line-height: 27px
+    color: rgba(40, 40, 44, 0.6)
+
+
+.search-form__field input[type="submit"] 
+    display: inline-block
+    width: 20px
+    height: 20px
+    padding: 0
+    border: none
+    background-color: transparent
+    background-image: url('../img/icon/search.svg')
+    background-repeat: no-repeat
+    background-position: center
+    background-size: 100%
+    outline: none
+    position: absolute
+    right: 0
+    top: 50%
+    transform: translateY(-50%)
+
+
+.search-form img 
+    filter: drop-shadow(0px 8px 8px rgba(0, 0, 0, .15))
+    position: absolute
+    left: 0
+    right: 0
+    margin: 0 auto
+    display: block
+    bottom: 0
+
+
+.search-form__field 
+    position: relative
+
+
+.search-wrapper:after 
+    content: ''
+    display: block
+    width: 100%
+    background-color: #646464
+    height: 32vh
+    position: absolute
+    bottom: 0
+
+
+.search-wrapper .close 
+    position: absolute
+    right: 34px
+    top: 34px
+    width: 24px
+    cursor: pointer
+
+
+/* size popup */
+.size-popup__wrap 
+    position: fixed
+    right: 0
+    top: 0
+    width: 100%
+    height: 100vh
+    background: rgba(50, 50, 50, 0.6)
+    z-index: 12
+
+
+.size-popup 
+    height: 100%
+    padding: 45px 40px
+    width: 650px
+    background-color: #fff
+    position: absolute
+    right: 0
+    top: 0
+    overflow: auto
+    +mq(xxl)
+        padding-top: 60px
+    +mq(md)
+        width: 90%
+        padding: 60px 0
+
+.size-popup::-webkit-scrollbar 
+    width: 10px
+
+
+.size-popup::-webkit-scrollbar-track 
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3)
+
+
+.size-popup::-webkit-scrollbar-thumb 
+    background-color: rgb(211, 211, 211)
+    outline: 1px solid rgb(168, 177, 187)
+
+
+.size-popup .title 
+    margin-bottom: 20px
+    text-align: center
+    letter-spacing: 0.14em
+    text-transform: uppercase
+    color: #28282C
+    font-size: 44px
+    line-height: 88px
+    font-family: 'Playfair Display', serif
+    +mq(xxl)
+        font-size: 32px
+        line-height: normal
+    +mq(lg)
+        font-size: 28px
+    +mq(md)
+        padding: 0 0 0 20px
+        font-size: 24px
+        margin-bottom: 10px
+
+
+.close-size 
+    position: absolute
+    right: 20px
+    top: 20px
+    cursor: pointer
+    +mq(md)
+        top: 15px
+        right: 15px
+    img 
+        +mq(md)
+            width: 20px
+
+.size-tabbtns 
+    text-align: center
+    font-size: 20px
+    line-height: 27px
+    text-transform: uppercase
+    color: #28282C
+    margin-bottom: 22px
+    +mq(xxl)
+        font-size: 18px
+    +mq(md)
+        padding: 0 0 0 20px
+
+.size-tabbtns span 
+    display: inline-block
+    padding: 5px 5px
+    cursor: pointer
+    position: relative
+
+
+.size-tabbtns span.active:after 
+    content: ''
+    display: inline-block
+    border-radius: 50%
+    -webkit-border-radius: 50%
+    -moz-border-radius: 50%
+    -ms-border-radius: 50%
+    -o-border-radius: 50%
+    width: 8px
+    height: 8px
+    background: $dn_main
+    position: absolute
+    left: 0
+    right: 0
+    margin: 0 auto
+    bottom: -5px
+
+.sizepbody
+    +mq(xxl)
+        padding: 0 0 0 20px
+
+.sizepbody thead tr th 
+    font-size: 18px
+    color: #9E9E9E
+    opacity: 0.7
+    font-weight: normal
+
+
+.sizepbody table th,
+.sizepbody table td 
+    width: 19%
+    text-align: center
+    border-right: 1px solid #dee2e6 !important
+
+
+.sizepbody table th:last-child,
+.sizepbody table td:last-child 
+    width: 24%
+    border-right: none !important
+
+
+.sizepbody table 
+    margin-bottom: 30px
+
+
+.table thead th 
+    border: none
+
+
+.sizepbody-cm 
+    display: none
+
+
+.sizepbody table td:first-child 
+    font-weight: bold
+
+
+.size-popup__wrap 
+    display: none

@@ -1,0 +1,471 @@
+.cont-textsect 
+    display: flex
+    padding-bottom: 200px
+    +mq(xxl)
+        padding-bottom: 120px
+    +mq(xl)
+        padding-bottom: 80px
+    +mq(lg)
+        padding: 0 40px 80px
+        flex-wrap: wrap
+    +mq(md)
+        padding: 0 15px 50px
+
+.cont-textsect__right 
+    padding-right: 130px
+    width: 100%
+    flex: 0 0 58%
+    max-width: 58%
+    padding-left: 30px
+    +mq(1400px)
+        padding-right: 80px
+    +mq(lg)
+        flex: 0 0 100%
+        max-width: 100%
+        padding: 0
+    
+    .contwrap-top
+        +mq(1400px)
+            margin-bottom: 20px
+            
+.cont-textsect__left 
+    width: 100%
+    flex: 0 0 42%
+    max-width: 42%
+    +mq(lg)
+        flex: 0 0 100%
+        max-width: 100%
+        margin-bottom: 20px
+
+.cont-textsect__left img 
+    width: 100%
+
+
+.cont-textsect__right .contwrap 
+    max-width: 675px
+
+
+.cont-textsect__right .contwrap 
+    height: 100%
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+
+
+.cont-textsect__right .section-subtitle 
+    margin-bottom: 65px
+    +mq(xxl)
+        margin-bottom: 30px
+        font-size: 16px
+    +mq(xl)
+        margin-bottom: 15px
+        font-size: 14px
+    +mq(lg)
+        margin-bottom: 25px
+    +mq(md)
+        margin-bottom: 20px
+
+
+.cont-textsect__right .descr 
+    margin-bottom: 45px
+    +mq(xxl)
+        margin-bottom: 30px
+    +mq(xl)
+        margin-bottom: 15px
+    +mq(lg)
+        margin-bottom: 25px
+    +mq(md)
+        margin-bottom: 20px
+
+
+
+.cont-textsect__right .descr p,
+.contwrap-bottom p 
+    font-size: 18px
+    line-height: 160%
+    color: #28282C
+    +mq(xxl)
+        font-size: 16px
+    
+
+
+.cont-textsect__right .descr p:last-child 
+    margin-bottom: 0
+
+
+.contwrap-bottom a 
+    margin-top: 45px
+
+
+.cont-textsect__right .bluebtn 
+    width: 393px
+    +mq(xxl)
+        width: 320px
+        height: 55px
+    +mq(xl)
+        height: 48px
+        width: 250px
+        margin-top: 15px
+
+
+.contform-sect__wrapp 
+    position: relative
+    
+
+
+.contform-sect__wrapp>img 
+    width: 100%
+
+
+.contform-sect__wrapp .question-form 
+    position: relative
+    left: 0
+    right: 0
+    margin: 0 auto
+    z-index: 2
+    top: -150px
+    +mq(xxl)
+        top: -100px
+        padding: 70px 50px 30px 50px
+        max-width: 960px
+    +mq(xl)
+        max-width: 85%
+        padding: 50px 50px 30px 50px
+    +mq(lg)
+        top: -70px
+        padding: 30px
+
+    +mq(md)
+        position: relative
+        bottom: initial
+        top: -50px
+    +mq(sm)
+        top: -30px
+        padding: 20px
+
+.question-form 
+    max-width: 1096px
+    width: 100%
+    padding: 124px 108px 52px 108px
+    background: #fff
+
+
+.contform-sect 
+    padding-bottom: 0
+
+
+.question-form__head 
+    display: flex
+    margin-bottom: 68px
+    +mq(xxl)
+        margin-bottom: 50px
+    +mq(xl)
+        margin-bottom: 30px
+    
+    +mq(md)
+        margin-bottom: 30px
+        flex-wrap: wrap
+
+
+.question-form__head .title 
+    width: 100%
+    max-width: 43%
+    flex: 0 0 43%
+    font-family: 'Playfair Display', serif
+    font-size: 44px
+    line-height: 44px
+    letter-spacing: 0.14em
+    text-transform: uppercase
+    +mq(xxl)
+        font-size: 32px
+        line-height: normal
+    +mq(xl)
+        font-size: 28px
+    +mq(lg)
+       
+        margin-bottom: 20px
+    +mq(md)
+        max-width: 100%
+        flex: 0 0 100%
+        font-size: 24px
+
+.question-form__head .descr 
+    width: 100%
+    max-width: 57%
+    flex: 0 0 57%
+    font-family: 'Playfair Display', serif
+    font-size: 18px
+    line-height: 140%
+    letter-spacing: 0.18em
+    +mq(xxl)
+        font-size: 16px
+    +mq(xl)
+        letter-spacing: 0.1em
+    +mq(md)
+        max-width: 100%
+        flex: 0 0 100%
+
+.question-form__head .title p,
+.question-form__head .descr p 
+    margin: 0
+    color: #28282C
+
+
+.question-form__body 
+    display: flex
+    align-items: center
+    flex-wrap: wrap
+    +mq(md)
+        flex-wrap: wrap
+
+.question-form__body .inpfield 
+    width: 100%
+    max-width: 50%
+    flex: 0 0 50%
+    margin-bottom: 30px
+    +mq(1024px)
+        margin-bottom: 20px
+    +mq(md)
+        padding: 0 !important
+        max-width: 100%
+        flex: 0 0 100%
+
+
+.question-form__body .inpfield.inpfield_fullwidth 
+    width: 100%
+    max-width: 100%
+    flex: 0 0 100%
+    margin-bottom: 30px
+    padding: 0 !important
+
+
+.question-form__body .inpfield textarea 
+    width: 100%
+    resize: none
+    height: 133px
+    margin-top: 20px
+    border: 1px solid #28282C
+    padding: 18px 32px
+    font-size: 20px
+    line-height: 27px
+    color: rgba(40, 40, 44, 0.6)
+    outline: none
+    +mq(xxl)
+        font-size: 16px
+    +mq(xl)
+        height: 110px
+        padding: 10px 20px
+    +mq(lg)
+        height: 110px
+
+.question-form__body .inpfield:nth-child(odd) 
+    padding-right: 70px
+    +mq(xl)
+        padding-right: 40px
+    +mq(lg)
+        padding-right: 20px
+
+.question-form__body .inpfield:nth-child(even) 
+    padding-left: 70px
+    +mq(xl)
+        padding-left: 40px
+    +mq(lg)
+        padding-left: 20px
+
+
+.question-form__body .btnfield 
+    width: 100%
+    max-width: 100%
+    flex: 0 0 100%
+    margin-top: 20px
+    +mq(lg)
+        margin-top: 0
+
+.question-form__body .bluebtn 
+    max-width: 340px
+    margin: 0 auto
+
+
+.question-form__body .inpfield .select-wrapper 
+    margin-left: 0
+    width: 100%
+    +mq(md)
+        max-width: 100%
+        flex: 0 0 100%
+        padding: 0
+.question-form__body .inpfield .select-wrapper .select2-container--default .select2-selection--single 
+    height: 56px
+    padding: 13px 0px
+    +mq(xxl)
+        height: 46px
+        padding: 9px 0px
+
+.question-form__body .inpfield .select-wrapper .select2-container--default .select2-selection--single .select2-selection__rendered 
+    color: rgba(40, 40, 44, 0.6)
+    padding-left: 30px
+    +mq(xxl)
+        padding-left: 15px
+        font-size: 16px
+.question-form__body .inpfield .select-wrapper .select2-container--default .select2-selection--single .select2-selection__arrow b 
+    left: 0
+    right: initial
+    margin: 0
+
+
+.question-form__body .inpfield .select-wrapper .select2-container--default .select2-selection--single .select2-selection__arrow 
+    top: 50%
+    transform: translateY(-50%)
+    right: 15px
+
+
+.question-form__body .inpfield input 
+    width: 100%
+    border: none
+    border-bottom: 1px solid #28282C
+    font-size: 20px
+    line-height: 27px
+    color: rgba(40, 40, 44, .6)
+    outline: none
+    height: 56px
+    padding-left: 30px
+    padding-right: 10px
+    +mq(xxl)
+        font-size: 16px
+        height: 46px
+        padding-left: 15px
+
+
+.question-form__body .inpfield input::placeholder 
+    color: rgba(40, 40, 44, 0.6)
+
+
+.question-form__body .blackbtn 
+    width: 100%
+
+
+.addressmap-sect .topsect 
+    padding: 142px 130px 59px 130px
+    background: #646464
+    +mq(xxl)
+        padding: 70px 15px 50px 130px
+    +mq(1400px)
+        padding-left: 80px
+    +mq(lg)
+        padding: 50px 40px
+    +mq(md)
+        padding: 50px 15px
+    +mq(sm)
+        padding: 30px 15px
+
+.addressmap-sect .section-subtitle 
+    margin-bottom: 133px
+    +mq(xxl)
+        margin-bottom: 100px
+    +mq(xl)
+        font-size: 14px
+    +mq(lg)
+        margin-bottom: 35px
+
+
+.addressmap-sect .topsect ul 
+    list-style-type: none
+    padding: 0
+    margin: 0
+
+
+.addressmap-sect .topsect ul li,
+.addressmap-sect .topsect ul li a 
+    color: #fff
+    font-family: 'Playfair Display', serif
+    font-size: 18px
+    line-height: 24px
+    +mq(1400px)
+        font-size: 16px
+
+
+.addressmap-sect .topsect ul li 
+    padding-left: 47px
+    position: relative
+    +mq(1400px)
+        padding-left: 35px
+        font-size: 16px
+
+.addressmap-sect .topsect ul li:not(:last-child) 
+    margin-bottom: 20px
+
+
+.addressmap-sect .topsect ul li.local-row:after,
+.addressmap-sect .topsect ul li.tel-row:after 
+    content: ''
+    display: inline-block
+    width: 20px
+    height: 20px
+    position: absolute
+    left: 0
+    top: 50%
+    transform: translateY(-50%)
+    -webkit-transform: translateY(-50%)
+    -moz-transform: translateY(-50%)
+    -ms-transform: translateY(-50%)
+    -o-transform: translateY(-50%)
+
+
+.addressmap-sect .topsect ul li.local-row:after 
+    background-image: url('../img/icon/icon-local.svg')
+
+
+.addressmap-sect .topsect ul li.tel-row:after 
+    background-image: url('../img/icon/icon-tel.svg')
+
+
+.soc-contlist 
+    padding: 0
+    margin: 0
+    list-style-type: none
+    +mq(lg)
+        margin-bottom: 20px
+
+.addressmap-sect .bottsect 
+    padding-top: 137px
+    padding-left: 130px
+    +mq(xxl)
+        padding-top: 100px
+    +mq(1400px)
+        padding-top: 80px
+    +mq(lg)
+        padding: 20px 40px 0
+    +mq(md)
+        padding: 20px 15px 0
+    
+
+
+.soc-contlist li 
+    display: inline-block
+    vertical-align: middle
+    margin-right: 22px
+
+
+.addressmap-sect 
+    padding-bottom: 200px
+    +mq(xxl)
+        padding-bottom: 120px
+    +mq(xl)
+        padding-bottom: 80px
+    +mq(sm)
+        padding-bottom: 0
+
+.addressmap-sect .bottsect #map 
+    height: 439px
+    +mq(xxl)
+        height: 350px
+    +mq(lg)
+        height: 300px
+
+.addressmap-sect .contmap 
+    position: absolute
+    bottom: 0
+    right: 0
+    width: 100%
+    +mq(lg)
+        position: relative
+
