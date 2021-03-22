@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find a store</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApj8qSzyO4DqXeQtFQPKI4mi6p-MBwlpo&libraries=places"></script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/slick.css">
+    <link rel="stylesheet" href="css/select2.min.css">
+    <link rel="stylesheet" href="css/style.min.css">
+    <link rel="stylesheet" href="css/main.min.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <script>
+        function initMap(){
+                // map options
+            var options = {
+                zoom:7,
+                center:{lat:53.3938131, lng:-7.858913}
+            }
+            var map = new google.maps.Map(document.getElementById('map'),options);
+            // Add a marker clusterer to manage the markers.
+
+            //Add marker
+            var markers = [
+
+                //Dublin
+                {
+                coords:{lat:53.338741, lng:-6.261563},
+                iconImage:'assets/img/places/stparkdublin.png',
+                content:'<span class="marker-link__name">St Stephen’s Green</span>'+'<span class="marker-link__address">Győri út 16-18 1123 Budapest</span>' + '<a href="tel:+36 30 277 0071" class="marker-link__phone" >Phone: +36 30 277 0071</a>' + '<a href="#" class="marker-link__site">tstephensgreenpark.ie/</a>'
+                },
+                {
+                coords:{lat:53.3755012,lng:-6.2735677},
+                iconImage:'assets/img/places/botanic garden.png',
+                content:'<span class="marker-link__name">Botanic Garden</span>'  + '<span class="marker-link__address">Győri út 16-18 1123 Budapest</span>' + '<a href="tel:+36 30 277 0071" class="marker-link__phone" >Phone: +36 30 277 0071</a>' 
+                },
+                {
+                coords:{lat:53.355998576, lng:-6.32166538},
+                iconImage:'assets/img/places/stparkdublin.png',////////////////////add picture
+                content:'<span class="marker-link__name">Phoenix Park</span>'  + '<span class="marker-link__address">Győri út 16-18 1123 Budapest</span>' + '<a href="tel:+36 30 277 0071" class="marker-link__phone" >Phone: +36 30 277 0071</a>' + '<a href="#" class="marker-link__site">hoenixpark.ie/</a>'
+                },
+                {
+                coords:{lat:53.460259, lng:-6.219985},
+                iconImage:'assets/img/places/swordscastle.png',
+                content:'<span class="marker-link__name">Swords Castle</span>' + '<span class="marker-link__address">Győri út 16-18 1123 Budapest</span>' + '<a href="tel:+36 30 277 0071" class="marker-link__phone" >Phone: +36 30 277 0071</a>' + '<a href="#" class="marker-link__site">swordscastle.events/</a>'
+                },
+                {
+                coords:{lat:53.37923, lng:-6.07201},
+                iconImage:'assets/img/places/Howth.png',
+                content:'<span class="marker-link__name">Howth</span>' + '<span class="marker-link__address">Győri út 16-18 1123 Budapest</span>' + '<a href="tel:+36 30 277 0071" class="marker-link__phone" >Phone: +36 30 277 0071</a>' + '<a href="#" class="marker-link__site">ww.visithowth.ie/</a>'
+                },
+                {
+                coords:{lat:55.1364, lng:-7.456},
+                iconImage:'assets/img/places/buncrana1.png',
+                content:'<span class="marker-link__name">Buncrana</span>' + '<span class="marker-link__address">Győri út 16-18 1123 Budapest</span>' + '<a href="tel:+36 30 277 0071" class="marker-link__phone" >Phone: +36 30 277 0071</a>' + '<a href="#" class="marker-link__site">en.wikipedia.org/wiki/Buncrana</a>'
+                },
+
+                
+                {
+                coords:{lat:53.1876492494, lng:-6.083832998},
+                iconImage:'assets/img/places/Bray.png',
+                content:'<span class="marker-link__name"> Bray</span>' + '<span class="marker-link__address">Győri út 16-18 1123 Budapest</span>' + '<a href="tel:+36 30 277 0071" class="marker-link__phone" >Phone: +36 30 277 0071</a>' + '<a href="#" class="marker-link__site">ww.bray.ie/</a>'
+                },
+                {
+                coords:{lat:53.144, lng: -6.072},
+                iconImage:'assets/img/places/greystones.png',
+                content:'<span class="marker-link__name">Greystones</span>' + '<span class="marker-link__address">Győri út 16-18 1123 Budapest</span>' + '<a href="tel:+36 30 277 0071" class="marker-link__phone" >Phone: +36 30 277 0071</a>' + '<a href="#" class="marker-link__site">isitwicklow.ie/item/greystones/</a>'
+                },
+                {
+                coords:{lat:52.518664592, lng:-7.887329784},
+                iconImage:'assets/img/places/Cashel.png',
+                content:'<span class="marker-link__name">Rock of Cashel</span>' + '<span class="marker-link__address">Győri út 16-18 1123 Budapest</span>' + '<a href="tel:+36 30 277 0071" class="marker-link__phone" >Phone: +36 30 277 0071</a>' + '<a href="#" class="marker-link__site">www.cashel.ie/</a>'
+                },
+                {
+                coords:{lat:52.6477, lng: -7.2561},
+                iconImage:'assets/img/places/kilkenny.png',
+                content:'<span class="marker-link__name">Killenny</span>' + '<span class="marker-link__address">Győri út 16-18 1123 Budapest</span>' + '<a href="tel:+36 30 277 0071" class="marker-link__phone" >Phone: +36 30 277 0071</a>' + '<a href="#" class="marker-link__site">visitkilkenny.ie/</a>'
+                },
+                //cork
+                {
+                coords:{lat:51.902694, lng:-8.4767},
+                iconImage:'assets/img/places/butterCork.png',
+                content:'<span class="marker-link__name">Museum of Butter</span>' + '<span class="marker-link__address">Győri út 16-18 1123 Budapest</span>' + '<a href="tel:+36 30 277 0071" class="marker-link__phone" >Phone: +36 30 277 0071</a>' + '<a href="#" class="marker-link__site">hebuttermuseum.com/</a>'
+                },
+                {
+                coords:{lat:51.89953, lng:-8.499022},
+                iconImage:'assets/img/places/prisoncork.png',
+                content:'<span class="marker-link__name">Cork City Gaol</span>' + '<span class="marker-link__address">Győri út 16-18 1123 Budapest</span>' + '<a href="tel:+36 30 277 0071" class="marker-link__phone" >Phone: +36 30 277 0071</a>' + '<a href="#" class="marker-link__site">corkcitygaol.com/</a>'
+                },
+
+                {
+                coords:{lat:53.4513204, lng:-6.140871},
+                iconImage:'assets/img/places/malahideB.png',
+                content:'<span class="marker-link__name">Malahide</span>' + '<span class="marker-link__address">Győri út 16-18 1123 Budapest</span>' + '<a href="tel:+36 30 277 0071" class="marker-link__phone" >Phone: +36 30 277 0071</a>' + '<a href="#" class="marker-link__site">www.malahide.ie/</a>'
+                },
+
+                
+                {
+                coords:{lat:53.3667776, lng:-6.5064198},
+                iconImage:'assets/img/places/Leixlip.png',
+                content:'<span class="marker-link__name">Leixlip</span>' + '<span class="marker-link__address">Győri út 16-18 1123 Budapest</span>' + '<a href="tel:+36 30 277 0071" class="marker-link__phone" >Phone: +36 30 277 0071</a>' + '<a href="#" class="marker-link__site">www.malahide.ie/</a>'
+                },
+                {
+                coords:{lat:53.1654628, lng:-6.125499},
+                iconImage:'assets/img/places/littlesugarloaf.png',
+                content:'<span class="marker-link__name">Leixlip</span>' + '<span class="marker-link__address">Győri út 16-18 1123 Budapest</span>' + '<a href="tel:+36 30 277 0071" class="marker-link__phone" >Phone: +36 30 277 0071</a>' + '<a href="#" class="marker-link__site">www.malahide.ie/</a>'
+
+                },
+                {
+                coords:{lat:53.5474019, lng:-6.0933048},
+                iconImage:'assets/img/places/rockabill view.png',
+                content:'<span class="marker-link__name">Leixlip</span>' + '<span class="marker-link__address">Győri út 16-18 1123 Budapest</span>' + '<a href="tel:+36 30 277 0071" class="marker-link__phone" >Phone: +36 30 277 0071</a>' + '<a href="#" class="marker-link__site">www.malahide.ie/</a>'
+
+                },
+                {
+                coords:{lat:52.3337499, lng:-6.4906996},
+                iconImage:'assets/img/places/wexford.png',
+                content:'<span class="marker-link__name">Leixlip</span>' + '<span class="marker-link__address">Győri út 16-18 1123 Budapest</span>' + '<a href="tel:+36 30 277 0071" class="marker-link__phone" >Phone: +36 30 277 0071</a>' + '<a href="#" class="marker-link__site">www.malahide.ie/</a>'
+
+                },
+            ];
+
+            // Loop through markers
+            var gmarkers = [];
+            for(var i = 0; i < markers.length; i++){
+                gmarkers.push(addMarker(markers[i]));
+                jQuery('#markers').append('<div class="store-address" ><div class="marker-link" data-markerid="' + i + '" > ' + markers[i].content + '</div></div> ');
+             
+            }
+            jQuery('.marker-link').on('click', function (e) {
+                
+                var idc = $(this).data('markerid');
+                console.log(markers[$(this).data('markerid')]);
+                e.preventDefault();
+                // google.maps.event.trigger(markers[idc], 'click');
+
+                var gmMap = markers[idc].coords;
+                console.log(gmMap);
+                map.setZoom(12);
+                map.setCenter(gmMap)
+                console.log(gmMap);
+            
+            });
+
+            //Add MArker function
+            function addMarker(props){
+                var marker = new google.maps.Marker({
+                    position:props.coords,
+                    map:map,
+
+                });
+
+                /* if(props.iconImage){
+                marker.setIcon(props.iconImage);
+                } */
+
+                //Check content
+                if(props.content){
+                    var infoWindow = new google.maps.InfoWindow({
+                        content:props.content
+                    });
+                    marker.addListener('click',function(){
+                        infoWindow.open(map,marker);
+                    });
+                }
+                return marker;
+            }
+            var markerCluster = new MarkerClusterer(map, gmarkers, 
+            {
+                imagePath:
+                'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+            });
+            
+
+        }
+        google.maps.event.addDomListener(window, 'load', initMap)
+            
+    </script>
+</head>
+
+<body>
+    <header class="header header_two">
+        <div class="header__blackline">
+            <div class="container-fluid">
+                <div class="header__blackline-wrapp">
+                    <div class="header__blackline-nav">
+                        <ul>
+                            <li><a href="#">Angela Bianca</a></li>
+                            <li class="active"><a href="#">Monica Loretti</a></li>
+                            <li><a href="#">Daniela Di Marino</a></li>
+                        </ul>
+                    </div>
+                    <div class="header__blackline-search">
+                        <span><img src="img/icon/icon-search.svg" alt="search"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header__mainsect">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-xl-2 col-lg-2">
+                        <div class="header__logo">
+                            <a href="index.html"><img src="img/logo_black.svg" alt="logo"></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-10 header__rightm">
+                        <div class="row">
+                            <div class="col-xl-9 col-lg-9">
+                                <div class="closemenu-btn"><img src="img/icon/close.svg" alt="close"></div>
+                                <nav class="header__menu">
+                                    <ul>
+                                        <li class="active"><a href="#">Wedding Dresses</a></li>
+                                        <li><a href="#">Events</a></li>
+                                        <li><a href="#">Find a store</a></li>
+                                        <li><a href="#">About us</a></li>
+                                        <li><a href="#">Contacts</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="col-xl-3 col-lg-3">
+                                <div class="header__login">
+                                    <div class="header__loginbtn">
+                                        <span>Log in</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="burgermenu-btn">
+                        <img src="img/icon/burger-icon.svg" alt="menu">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container-fluid">
+            <div class="breadcrumbs">
+                <ul>
+                    <li><a href="#"><img src="img/icon/icon-home.svg" alt="home"></a></li>
+                    <li><span>Find a store</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container-fluid ">
+            <h1 class="page-title">Find a store</h1>
+        </div>
+
+        <section class="find-store">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="find-store__sidebar col-xl-4">
+                        <div class="find-store__list" id="markers">
+                            
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class=" find-store__map">
+                            <div id="map"></div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="footer__content">
+                <div class="footer__logo">
+                    <a href="index.html"><img src="img/logo_black.svg" alt="logo"></a>
+                    <p>ALL RIGHT RESERVED</p>
+                </div>
+                <div class="footer__menu">
+                    <p class="footer__title">MENU</p>
+                    <ul>
+                        <li><a href="#">Wedding Dresses</a></li>
+                        <li><a href="#">Find a store</a></li>
+                        <li><a href="#">Contacts</a></li>
+                        <li><a href="#">Events</a></li>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Log in</a></li>
+                    </ul>
+                </div>
+                <div class="footer__contacts">
+                    <p class="footer__title">CONTACTS</p>
+                    <ul>
+                        <li><a class="footadrlink" href="#">3015 73rd St. Atkins IA 52206</a></li>
+                        <li><a class="foottellink" href="#">(319) 446-7887 Johanna</a></li>
+                    </ul>
+                </div>
+                <div class="footer__social">
+                    <p class="footer__title">SOCIAL</p>
+                    <ul>
+                        <li class="footer-fb">
+                            <a href="#" target="_blank">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M17.0703 0H2.92969C1.31439 0 0 1.31439 0 2.92969V17.0703C0 18.6856 1.31439 20 2.92969 20H8.82812V12.9297H6.48438V9.41406H8.82812V7.03125C8.82812 5.09262 10.4051 3.51562 12.3438 3.51562H15.8984V7.03125H12.3438V9.41406H15.8984L15.3125 12.9297H12.3438V20H17.0703C18.6856 20 20 18.6856 20 17.0703V2.92969C20 1.31439 18.6856 0 17.0703 0Z"
+                                        fill="#3C3C3E" />
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="footer-yt">
+                            <a href="#" target="_blank">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M19.5879 5.19067C19.3575 4.33405 18.6819 3.65879 17.8252 3.42813C16.2602 3 9.99977 3 9.99977 3C9.99977 3 3.73963 3 2.17456 3.41189C1.33435 3.64231 0.642335 4.33417 0.411866 5.19067C0 6.75525 0 10 0 10C0 10 0 13.2611 0.411866 14.8093C0.642579 15.6658 1.31787 16.3411 2.17469 16.5718C3.75611 17 10 17 10 17C10 17 16.2602 17 17.8252 16.5881C18.682 16.3576 19.3575 15.6823 19.5882 14.8258C19.9999 13.2611 19.9999 10.0165 19.9999 10.0165C19.9999 10.0165 20.0164 6.75525 19.5879 5.19067ZM8.00661 12.9976V7.00239L13.2124 10L8.00661 12.9976Z"
+                                        fill="#3C3C3E" />
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="footer-ins">
+                            <a href="#" target="_blank">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M17.0703 0H2.92969C1.31439 0 0 1.31439 0 2.92969V17.0703C0 18.6856 1.31439 20 2.92969 20H17.0703C18.6856 20 20 18.6856 20 17.0703V2.92969C20 1.31439 18.6856 0 17.0703 0ZM10.0391 15.2344C7.1312 15.2344 4.76562 12.8688 4.76562 9.96094C4.76562 7.05307 7.1312 4.6875 10.0391 4.6875C12.9469 4.6875 15.3125 7.05307 15.3125 9.96094C15.3125 12.8688 12.9469 15.2344 10.0391 15.2344ZM15.8984 5.85938C14.9292 5.85938 14.1406 5.0708 14.1406 4.10156C14.1406 3.13232 14.9292 2.34375 15.8984 2.34375C16.8677 2.34375 17.6562 3.13232 17.6562 4.10156C17.6562 5.0708 16.8677 5.85938 15.8984 5.85938Z"
+                                        fill="#3C3C3E" />
+                                    <path
+                                        d="M15.8984 3.51562C15.5751 3.51562 15.3125 3.77823 15.3125 4.10156C15.3125 4.4249 15.5751 4.6875 15.8984 4.6875C16.2218 4.6875 16.4844 4.4249 16.4844 4.10156C16.4844 3.77823 16.2218 3.51562 15.8984 3.51562Z"
+                                        fill="#3C3C3E" />
+                                    <path
+                                        d="M10.0391 5.85938C7.77771 5.85938 5.9375 7.69958 5.9375 9.96094C5.9375 12.2223 7.77771 14.0625 10.0391 14.0625C12.3004 14.0625 14.1406 12.2223 14.1406 9.96094C14.1406 7.69958 12.3004 5.85938 10.0391 5.85938Z"
+                                        fill="#3C3C3E" />
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="footer-pint">
+                            <a href="#" target="_blank">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M4.80247 10.8679C4.8275 10.8055 5.07789 9.84329 5.09544 9.77814C4.70451 9.18991 4.27025 7.26364 4.60335 5.70007C4.96269 3.40591 7.39387 2.27814 9.68925 2.27814V2.27386C12.5631 2.2757 14.7143 3.87466 14.7166 6.62842C14.7184 8.78387 13.4199 11.633 11.2026 11.633C11.202 11.633 11.2016 11.633 11.2009 11.633C10.4096 11.633 9.40773 11.2741 9.14497 10.9216C8.84178 10.5154 8.76732 10.0142 8.92753 9.47861C9.32014 8.2254 9.82078 6.72424 9.87922 5.72327C9.93339 4.77859 9.26307 4.16397 8.39378 4.16397C7.73964 4.16397 6.89003 4.54391 6.4666 5.61157C6.11686 6.49857 6.12434 7.42722 6.48948 8.45032C6.63185 8.85025 5.85838 11.4575 5.61058 12.3065C4.99489 14.4156 4.15199 17.084 4.3322 18.5701L4.50615 20L5.37986 18.855C6.58897 17.2722 7.83912 13.1779 8.17222 12.1817C9.15703 13.457 11.2078 13.4937 11.4469 13.4937C14.3838 13.4937 17.714 10.5774 17.6195 6.51855C17.5367 2.95914 14.9317 0 10.2511 0V0.00457766C5.79887 0.00457766 3.2003 2.38098 2.56416 5.38361C1.98158 8.16772 3.2772 10.2867 4.80247 10.8679Z"
+                                        fill="#3C3C3E" />
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/slick.min.js"></script>
+    <script src="js/select2.min.js"></script>
+    <script src="js/common.js"></script>
+
+
+</body>
+
+</html>
