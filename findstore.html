@@ -18,22 +18,108 @@
     <link rel="stylesheet" href="css/main.min.css">
     <link rel="stylesheet" href="css/responsive.css">
     <script>
-        function initMap(){
-                // map options
+        function initMap() {
+            // map options
+            var stylemap = [{
+                    "featureType": "water",
+                    "elementType": "geometry",
+                    "stylers": [{
+                        "color": "#87cbdb"
+                    }]
+                },
+                {
+                    "featureType": "landscape",
+                    "elementType": "geometry",
+                    "stylers": [{
+                            "color": "#b8cb93"
+                        },
+                        {
+                            "lightness": 20
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.highway",
+                    "elementType": "geometry.fill",
+                    "stylers": [{
+                            "color": "#ffffff"
+                        },
+                        {
+                            "lightness": 17
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.highway",
+                    "elementType": "geometry.stroke",
+                    "stylers": [{
+                            "color": "#ffffff"
+                        },
+                        {
+                            "lightness": 29
+                        },
+                        {
+                            "weight": 0.1
+                        }
+                    ]
+                },
+            ];
             var options = {
-                zoom:7,
-                center:{lat:53.3938131, lng:-7.858913}
+                zoom: 5,
+                center: {
+                    lat: 46.8302317,
+                    lng: 12.2224921
+                },
+                styles: stylemap,
             }
-            var map = new google.maps.Map(document.getElementById('map'),options);
+            const labels = "";
+
+            mcOptions = {
+                styles: [{
+                        textColor: 'white',
+                        height: 57,
+                        url: "img/cluster.png",
+                        width: 57
+                    },
+                    {
+                        textColor: 'white',
+                        height: 57,
+                        url: "img/cluster.png",
+                        width: 57
+                    },
+                    {
+                        textColor: 'white',
+                        height: 57,
+                        url: "img/cluster.png",
+                        width: 57
+                    },
+                    {
+                        textColor: 'white',
+                        height: 57,
+                        url: "img/cluster.png",
+                        width: 57
+                    },
+                    {
+                        textColor: 'white',
+                        height: 57,
+                        url: "img/cluster.png",
+                        width: 57
+                    }
+                ]
+            }
+
+            var map = new google.maps.Map(document.getElementById('map'), options);
             // Add a marker clusterer to manage the markers.
 
             //Add marker
             var markers = [
 
-                //Dublin
                 {
-                    coords:{lat:53.338741, lng:-6.261563},
-                    content:`
+                    coords: {
+                        lat: 49.8225468,
+                        lng: 24.1133993
+                    },
+                    content: `
                         <p class="title">LILLY</p>
                         <div class="row no-gutters">
                             <ul class="col">
@@ -43,21 +129,16 @@
                                 </li>
                                 <li class="phone">Phone: +36 30 277 0071</li>
                             </ul>
-                            <div class="direction">
-                                <div class="direction__box">
-                                    <a href="#">
-                                        <img src="img/icon/direction-ic.svg" alt="icon">
-                                        <p>Directions</p>
-                                    </a>
-                                </div>
-                            </div>
                         </div>
                     `
                 },
                 {
-                    coords:{lat:53.3755012,lng:-6.2735677},
-                    content:`
-                        <p class="title">Bridal LUX</p>
+                    coords: {
+                        lat: 49.8431884,
+                        lng: 24.0248358
+                    },
+                    content: `
+                    <p class="title">LILLY</p>
                         <div class="row no-gutters">
                             <ul class="col">
                                 <li class="loc">
@@ -65,23 +146,17 @@
                                     1123 Budapest
                                 </li>
                                 <li class="phone">Phone: +36 30 277 0071</li>
-                                <li class="site">http://ivalosbryllup.dk</li>
                             </ul>
-                            <div class="direction">
-                                <div class="direction__box">
-                                    <a href="#">
-                                        <img src="img/icon/direction-ic.svg" alt="icon">
-                                        <p>Directions</p>
-                                    </a>
-                                </div>
-                            </div>
                         </div>
                     `
                 },
                 {
-                    coords:{lat:53.355998576, lng:-6.32166538},
-                    content:`
-                        <p class="title">Wedding Day</p>
+                    coords: {
+                        lat: 49.2355752,
+                        lng: 23.883286
+                    },
+                    content: `
+                    <p class="title">LILLY</p>
                         <div class="row no-gutters">
                             <ul class="col">
                                 <li class="loc">
@@ -89,23 +164,180 @@
                                     1123 Budapest
                                 </li>
                                 <li class="phone">Phone: +36 30 277 0071</li>
-                            
                             </ul>
-                            <div class="direction">
-                                <div class="direction__box">
-                                    <a href="#">
-                                        <img src="img/icon/direction-ic.svg" alt="icon">
-                                        <p>Directions</p>
-                                    </a>
-                                </div>
-                            </div>
                         </div>
                     `
                 },
                 {
-                coords:{lat:53.460259, lng:-6.219985},
-                    content:`
+                    coords: {
+                        lat: 47.4194646,
+                        lng: 18.9927268
+                    },
+                    content: `
+                    <p class="title">LILLY</p>
+                        <div class="row no-gutters">
+                            <ul class="col">
+                                <li class="loc">
+                                    Győri út 16-18<br>
+                                    1123 Budapest
+                                </li>
+                                <li class="phone">Phone: +36 30 277 0071</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                {
+                    coords: {
+                        lat: 47.4799668,
+                        lng: 19.0507386
+                    },
+                    content: `
+                    <p class="title">LILLY</p>
+                        <div class="row no-gutters">
+                            <ul class="col">
+                                <li class="loc">
+                                    Győri út 16-18<br>
+                                    1123 Budapest
+                                </li>
+                                <li class="phone">Phone: +36 30 277 0071</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                {
+                    coords: {
+                        lat: 47.5264903,
+                        lng: 18.9879709
+                    },
+                    content: `
+                    <p class="title">LILLY</p>
+                        <div class="row no-gutters">
+                            <ul class="col">
+                                <li class="loc">
+                                    Győri út 16-18<br>
+                                    1123 Budapest
+                                </li>
+                                <li class="phone">Phone: +36 30 277 0071</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                {
+                    coords: {
+                        lat: 47.1786219,
+                        lng: 18.3942966
+                    },
+                    content: `
+                    <p class="title">LILLY</p>
+                        <div class="row no-gutters">
+                            <ul class="col">
+                                <li class="loc">
+                                    Győri út 16-18<br>
+                                    1123 Budapest
+                                </li>
+                                <li class="phone">Phone: +36 30 277 0071</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                {
+                    coords: {
+                        lat: 47.1152602,
+                        lng: 18.3633095
+                    },
+                    content: `
+                    <p class="title">LILLY</p>
+                        <div class="row no-gutters">
+                            <ul class="col">
+                                <li class="loc">
+                                    Győri út 16-18<br>
+                                    1123 Budapest
+                                </li>
+                                <li class="phone">Phone: +36 30 277 0071</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                {
+                    coords: {
+                        lat: 48.856977,
+                        lng: 2.3472257
+                    },
+                    content: `
+                    <p class="title">LILLY</p>
+                        <div class="row no-gutters">
+                            <ul class="col">
+                                <li class="loc">
+                                    Győri út 16-18<br>
+                                    1123 Budapest
+                                </li>
+                                <li class="phone">Phone: +36 30 277 0071</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                {
+                    coords: {
+                        lat: 48.7543441,
+                        lng: 2.3215783
+                    },
+                    content: `
+                    <p class="title">LILLY</p>
+                        <div class="row no-gutters">
+                            <ul class="col">
+                                <li class="loc">
+                                    Győri út 16-18<br>
+                                    1123 Budapest
+                                </li>
+                                <li class="phone">Phone: +36 30 277 0071</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                {
+                    coords: {
+                        lat: 48.7802642,
+                        lng: 1.9642106
+                    },
+                    content: `
+                    <p class="title">LILLY</p>
+                        <div class="row no-gutters">
+                            <ul class="col">
+                                <li class="loc">
+                                    Győri út 16-18<br>
+                                    1123 Budapest
+                                </li>
+                                <li class="phone">Phone: +36 30 277 0071</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                {
+                    coords: {
+                        lat: 48.4532931,
+                        lng: 2.5041298
+                    },
+                    content: `
+                    <p class="title">LILLY</p>
+                        <div class="row no-gutters">
+                            <ul class="col">
+                                <li class="loc">
+                                    Győri út 16-18<br>
+                                    1123 Budapest
+                                </li>
+                                <li class="phone">Phone: +36 30 277 0071</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                {
+                    coords: {
+                        lat: 47.1380951,
+                        lng: -1.5821305
+                    },
+                    content: `
                         <p class="title">Amelya</p>
+                        <p class="title">LILLY</p>
                         <div class="row no-gutters">
                             <ul class="col">
                                 <li class="loc">
@@ -113,23 +345,17 @@
                                     1123 Budapest
                                 </li>
                                 <li class="phone">Phone: +36 30 277 0071</li>
-                                <li class="site">http://ivalosbryllup.dk</li>
                             </ul>
-                            <div class="direction">
-                                <div class="direction__box">
-                                    <a href="#">
-                                        <img src="img/icon/direction-ic.svg" alt="icon">
-                                        <p>Directions</p>
-                                    </a>
-                                </div>
-                            </div>
                         </div>
                     `
                 },
                 {
-                    coords:{lat:53.37923, lng:-6.07201},
-                    content:`
-                        <p class="title">Amelya</p>
+                    coords: {
+                        lat: 43.2949381,
+                        lng: 5.3581403
+                    },
+                    content: `
+                    <p class="title">LILLY</p>
                         <div class="row no-gutters">
                             <ul class="col">
                                 <li class="loc">
@@ -137,23 +363,17 @@
                                     1123 Budapest
                                 </li>
                                 <li class="phone">Phone: +36 30 277 0071</li>
-                                <li class="site">http://ivalosbryllup.dk</li>
                             </ul>
-                            <div class="direction">
-                                <div class="direction__box">
-                                    <a href="#">
-                                        <img src="img/icon/direction-ic.svg" alt="icon">
-                                        <p>Directions</p>
-                                    </a>
-                                </div>
-                            </div>
                         </div>
                     `
                 },
                 {
-                    coords:{lat:55.1364, lng:-7.456},
-                    content:`
-                        <p class="title">Amelya</p>
+                    coords: {
+                        lat: 47.1824894,
+                        lng: -1.5391631
+                    },
+                    content: `
+                    <p class="title">LILLY</p>
                         <div class="row no-gutters">
                             <ul class="col">
                                 <li class="loc">
@@ -161,48 +381,17 @@
                                     1123 Budapest
                                 </li>
                                 <li class="phone">Phone: +36 30 277 0071</li>
-                                <li class="site">http://ivalosbryllup.dk</li>
                             </ul>
-                            <div class="direction">
-                                <div class="direction__box">
-                                    <a href="#">
-                                        <img src="img/icon/direction-ic.svg" alt="icon">
-                                        <p>Directions</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    `
-                },
-
-                {
-                    coords:{lat:53.1876492494, lng:-6.083832998},
-                    content:`
-                        <p class="title">Amelya</p>
-                        <div class="row no-gutters">
-                            <ul class="col">
-                                <li class="loc">
-                                    Győri út 16-18<br>
-                                    1123 Budapest
-                                </li>
-                                <li class="phone">Phone: +36 30 277 0071</li>
-                                <li class="site">http://ivalosbryllup.dk</li>
-                            </ul>
-                            <div class="direction">
-                                <div class="direction__box">
-                                    <a href="#">
-                                        <img src="img/icon/direction-ic.svg" alt="icon">
-                                        <p>Directions</p>
-                                    </a>
-                                </div>
-                            </div>
                         </div>
                     `
                 },
                 {
-                    coords:{lat:53.144, lng: -6.072},
-                    content:`
-                        <p class="title">Amelya</p>
+                    coords: {
+                        lat: 43.351406,
+                        lng: 5.351537
+                    },
+                    content: `
+                    <p class="title">LILLY</p>
                         <div class="row no-gutters">
                             <ul class="col">
                                 <li class="loc">
@@ -210,23 +399,17 @@
                                     1123 Budapest
                                 </li>
                                 <li class="phone">Phone: +36 30 277 0071</li>
-                                <li class="site">http://ivalosbryllup.dk</li>
                             </ul>
-                            <div class="direction">
-                                <div class="direction__box">
-                                    <a href="#">
-                                        <img src="img/icon/direction-ic.svg" alt="icon">
-                                        <p>Directions</p>
-                                    </a>
-                                </div>
-                            </div>
                         </div>
                     `
                 },
                 {
-                    coords:{lat:52.518664592, lng:-7.887329784},
-                    content:`
-                        <p class="title">Amelya</p>
+                    coords: {
+                        lat: 51.5185603,
+                        lng: -0.1156527
+                    },
+                    content: `
+                    <p class="title">LILLY</p>
                         <div class="row no-gutters">
                             <ul class="col">
                                 <li class="loc">
@@ -234,23 +417,17 @@
                                     1123 Budapest
                                 </li>
                                 <li class="phone">Phone: +36 30 277 0071</li>
-                               
                             </ul>
-                            <div class="direction">
-                                <div class="direction__box">
-                                    <a href="#">
-                                        <img src="img/icon/direction-ic.svg" alt="icon">
-                                        <p>Directions</p>
-                                    </a>
-                                </div>
-                            </div>
                         </div>
                     `
                 },
                 {
-                    coords:{lat:52.6477, lng: -7.2561},
-                    content:`
-                        <p class="title">Amelya</p>
+                    coords: {
+                        lat: 51.4925911,
+                        lng: -0.086658
+                    },
+                    content: `
+                    <p class="title">LILLY</p>
                         <div class="row no-gutters">
                             <ul class="col">
                                 <li class="loc">
@@ -258,48 +435,17 @@
                                     1123 Budapest
                                 </li>
                                 <li class="phone">Phone: +36 30 277 0071</li>
-                                <li class="site">http://ivalosbryllup.dk</li>
                             </ul>
-                            <div class="direction">
-                                <div class="direction__box">
-                                    <a href="#">
-                                        <img src="img/icon/direction-ic.svg" alt="icon">
-                                        <p>Directions</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    `
-                },
-                //cork
-                {
-                    coords:{lat:51.902694, lng:-8.4767},
-                    content:`
-                        <p class="title">Amelya</p>
-                        <div class="row no-gutters">
-                            <ul class="col">
-                                <li class="loc">
-                                    Győri út 16-18<br>
-                                    1123 Budapest
-                                </li>
-                                <li class="phone">Phone: +36 30 277 0071</li>
-                                <li class="site">http://ivalosbryllup.dk</li>
-                            </ul>
-                            <div class="direction">
-                                <div class="direction__box">
-                                    <a href="#">
-                                        <img src="img/icon/direction-ic.svg" alt="icon">
-                                        <p>Directions</p>
-                                    </a>
-                                </div>
-                            </div>
                         </div>
                     `
                 },
                 {
-                    coords:{lat:51.89953, lng:-8.499022},
-                    content:`
-                        <p class="title">Amelya</p>
+                    coords: {
+                        lat: 50.9786252,
+                        lng: 10.3120153
+                    },
+                    content: `
+                    <p class="title">LILLY</p>
                         <div class="row no-gutters">
                             <ul class="col">
                                 <li class="loc">
@@ -307,74 +453,17 @@
                                     1123 Budapest
                                 </li>
                                 <li class="phone">Phone: +36 30 277 0071</li>
-                                <li class="site">http://ivalosbryllup.dk</li>
                             </ul>
-                            <div class="direction">
-                                <div class="direction__box">
-                                    <a href="#">
-                                        <img src="img/icon/direction-ic.svg" alt="icon">
-                                        <p>Directions</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    `
-                },
-
-                {
-                    coords:{lat:53.4513204, lng:-6.140871},
-                    content:`
-                        <p class="title">Amelya</p>
-                        <div class="row no-gutters">
-                            <ul class="col">
-                                <li class="loc">
-                                    Győri út 16-18<br>
-                                    1123 Budapest
-                                </li>
-                                <li class="phone">Phone: +36 30 277 0071</li>
-                                <li class="site">http://ivalosbryllup.dk</li>
-                            </ul>
-                            <div class="direction">
-                                <div class="direction__box">
-                                    <a href="#">
-                                        <img src="img/icon/direction-ic.svg" alt="icon">
-                                        <p>Directions</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    `
-                },
-
-                
-                {
-                    coords:{lat:53.3667776, lng:-6.5064198},
-                    content:`
-                        <p class="title">Amelya</p>
-                        <div class="row no-gutters">
-                            <ul class="col">
-                                <li class="loc">
-                                    Győri út 16-18<br>
-                                    1123 Budapest
-                                </li>
-                                <li class="phone">Phone: +36 30 277 0071</li>
-                                <li class="site">http://ivalosbryllup.dk</li>
-                            </ul>
-                            <div class="direction">
-                                <div class="direction__box">
-                                    <a href="#">
-                                        <img src="img/icon/direction-ic.svg" alt="icon">
-                                        <p>Directions</p>
-                                    </a>
-                                </div>
-                            </div>
                         </div>
                     `
                 },
                 {
-                    coords:{lat:53.1654628, lng:-6.125499},
-                    content:`
-                        <p class="title">Amelya</p>
+                    coords: {
+                        lat: 52.5168731,
+                        lng: 13.3776729
+                    },
+                    content: `
+                    <p class="title">LILLY</p>
                         <div class="row no-gutters">
                             <ul class="col">
                                 <li class="loc">
@@ -382,23 +471,17 @@
                                     1123 Budapest
                                 </li>
                                 <li class="phone">Phone: +36 30 277 0071</li>
-                                <li class="site">http://ivalosbryllup.dk</li>
                             </ul>
-                            <div class="direction">
-                                <div class="direction__box">
-                                    <a href="#">
-                                        <img src="img/icon/direction-ic.svg" alt="icon">
-                                        <p>Directions</p>
-                                    </a>
-                                </div>
-                            </div>
                         </div>
                     `
                 },
                 {
-                    coords:{lat:53.5474019, lng:-6.0933048},
-                    content:`
-                        <p class="title">Amelya</p>
+                    coords: {
+                        lat: 52.5092491,
+                        lng: 13.3505341
+                    },
+                    content: `
+                    <p class="title">LILLY</p>
                         <div class="row no-gutters">
                             <ul class="col">
                                 <li class="loc">
@@ -406,23 +489,17 @@
                                     1123 Budapest
                                 </li>
                                 <li class="phone">Phone: +36 30 277 0071</li>
-                                <li class="site">http://ivalosbryllup.dk</li>
                             </ul>
-                            <div class="direction">
-                                <div class="direction__box">
-                                    <a href="#">
-                                        <img src="img/icon/direction-ic.svg" alt="icon">
-                                        <p>Directions</p>
-                                    </a>
-                                </div>
-                            </div>
                         </div>
                     `
                 },
                 {
-                    coords:{lat:52.3337499, lng:-6.4906996},
-                    content:`
-                        <p class="title">Amelya</p>
+                    coords: {
+                        lat: 52.4973137,
+                        lng: 13.4149179
+                    },
+                    content: `
+                    <p class="title">LILLY</p>
                         <div class="row no-gutters">
                             <ul class="col">
                                 <li class="loc">
@@ -430,16 +507,97 @@
                                     1123 Budapest
                                 </li>
                                 <li class="phone">Phone: +36 30 277 0071</li>
-                                <li class="site">http://ivalosbryllup.dk</li>
                             </ul>
-                            <div class="direction">
-                                <div class="direction__box">
-                                    <a href="#">
-                                        <img src="img/icon/direction-ic.svg" alt="icon">
-                                        <p>Directions</p>
-                                    </a>
-                                </div>
-                            </div>
+                        </div>
+                    `
+                },
+                {
+                    coords: {
+                        lat: 52.5632244,
+                        lng: 13.4197571
+                    },
+                    content: `
+                    <p class="title">LILLY</p>
+                        <div class="row no-gutters">
+                            <ul class="col">
+                                <li class="loc">
+                                    Győri út 16-18<br>
+                                    1123 Budapest
+                                </li>
+                                <li class="phone">Phone: +36 30 277 0071</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                {
+                    coords: {
+                        lat: 52.5492239,
+                        lng: 13.0597026
+                    },
+                    content: `
+                    <p class="title">LILLY</p>
+                        <div class="row no-gutters">
+                            <ul class="col">
+                                <li class="loc">
+                                    Győri út 16-18<br>
+                                    1123 Budapest
+                                </li>
+                                <li class="phone">Phone: +36 30 277 0071</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                {
+                    coords: {
+                        lat: 52.3209228,
+                        lng: 9.7925675
+                    },
+                    content: `
+                    <p class="title">LILLY</p>
+                        <div class="row no-gutters">
+                            <ul class="col">
+                                <li class="loc">
+                                    Győri út 16-18<br>
+                                    1123 Budapest
+                                </li>
+                                <li class="phone">Phone: +36 30 277 0071</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                {
+                    coords: {
+                        lat: 52.2539811,
+                        lng: 9.9992756
+                    },
+                    content: `
+                    <p class="title">LILLY</p>
+                        <div class="row no-gutters">
+                            <ul class="col">
+                                <li class="loc">
+                                    Győri út 16-18<br>
+                                    1123 Budapest
+                                </li>
+                                <li class="phone">Phone: +36 30 277 0071</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                {
+                    coords: {
+                        lat: 52.6222289,
+                        lng: 13.4672432
+                    },
+                    content: `
+                    <p class="title">LILLY</p>
+                        <div class="row no-gutters">
+                            <ul class="col">
+                                <li class="loc">
+                                    Győri út 16-18<br>
+                                    1123 Budapest
+                                </li>
+                                <li class="phone">Phone: +36 30 277 0071</li>
+                            </ul>
                         </div>
                     `
                 },
@@ -447,12 +605,13 @@
 
             // Loop through markers
             var gmarkers = [];
-            for(var i = 0; i < markers.length; i++){
+            for (var i = 0; i < markers.length; i++) {
                 gmarkers.push(addMarker(markers[i]));
-                jQuery('#markers').append('<div class="findstore__shop" data-markerid="' + i + '" > ' + markers[i].content + '</div>');
-             
+                // console.log(i);
+                jQuery('#markers').append('<div class="findstore__shop findstore__shop-item-' + i + '" data-markerid="' + i + '" > ' + markers[i].content + '</div>');
+
             }
-            
+
             jQuery('.findstore__shop').on('click', function (e) {
                 var idc = $(this).data('markerid');
                 var gmMap = markers[idc].coords;
@@ -461,31 +620,35 @@
             });
 
             //Add MArker function
-            function addMarker(props){
+            function addMarker(props, i) {
                 var marker = new google.maps.Marker({
-                    position:props.coords,
-                    map:map,
+                    position: props.coords,
+                    map: map,
+                    icon: {
+                        url: "img/mapmarker.png",
+                        scaledSize: new google.maps.Size(24, 32)
+                    },
                 });
 
+                
+
                 //Check content
-                if(props.content){
+                if (props.content) {
                     var infoWindow = new google.maps.InfoWindow({
-                        content:props.content
+                        content: props.content
                     });
-                    marker.addListener('click',function(){
-                        infoWindow.open(map,marker);
+                    marker.addListener('click', function () {
+                        infoWindow.open(map, marker);
                     });
                 }
                 return marker;
             }
-            var markerCluster = new MarkerClusterer(map, gmarkers, 
-            {
-                imagePath:
-                'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
-            });
 
 
-            
+            //init clusterer with your options
+            var markerCluster = new MarkerClusterer(map, gmarkers, mcOptions);
+
+
             // my local
             const locationButton = document.getElementById("button-loc");
             locationButton.addEventListener("click", () => {
@@ -501,6 +664,10 @@
                             var marker = new google.maps.Marker({
                                 position: pos,
                                 map: map,
+                                icon: {
+                                    url: "img/mapmarker.png",
+                                    scaledSize: new google.maps.Size(24, 32)
+                                },
                             });
                         },
                     );
@@ -514,12 +681,13 @@
                     lat: newLat,
                     lng: newLng,
                 });
-               
+
             }
+
             $('#country-select').change(function () {
                 if ($('#country-select option:selected').val() == 'All') {
                     newLocation(46.8302317, 12.2224921);
-                    map.setZoom(5.5);
+                    map.setZoom(4);
                     // $('#type').val('0');
 
                 }
@@ -549,11 +717,41 @@
 
 
             });
+            
+
+            // show Visible Markers
+
+            function showVisibleMarkers() {
+                var bounds = map.getBounds(),
+                    count = 0;
+                                            
+                for (var i = 0; i < markers.length; i++) {
+                    var marker = markers[i],
+                        infoPanel = $('.findstore__shop-item-' + (i) ); // array indexes start at zero, but not our class names :)
+                                
+                    if(bounds.contains(marker.coords)===true) {
+                        infoPanel.show();
+                        count++;
+                    }
+                    else {
+                        infoPanel.hide();
+                    }
+                }
+                
+            }
+
+            google.maps.event.addListener(map, 'idle', function() {
+                showVisibleMarkers();
+            });
 
         }
+        
+       
         google.maps.event.addDomListener(window, 'load', initMap)
-            
+
     </script>
+
+
 </head>
 
 <body>
@@ -675,9 +873,6 @@
                 </div>
             </div>
         </section>
-
-
-
 
     </main>
 
