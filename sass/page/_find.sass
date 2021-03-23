@@ -4,7 +4,13 @@
     text-align: right
     padding-right: 130px
     margin-bottom: 30px
-
+    +mq(1400px)
+       padding-right: 80px 
+    +mq(lg)
+        padding-right: 40px
+        margin-bottom: 20px
+    +mq(md)
+        padding-right: 0
 
 .findstore__list ul 
     padding: 0
@@ -16,7 +22,12 @@
     display: inline-block
     margin-left: 80px
     position: relative
-
+    +mq(xxl)
+        margin-left: 60px
+    +mq(lg)
+        margin-left: 40px
+    +mq(sm)
+        margin-left: 20px
 
 .findstore__list ul li a 
     color: #28282C
@@ -28,7 +39,10 @@
     -moz-transition: .3s
     -ms-transition: .3s
     -o-transition: .3s
-
+    +mq(xxl)
+        font-size: 18px
+    +mq(lg)
+        font-size: 16px
 
 .findstore__list ul li a:hover 
     opacity: 1
@@ -48,7 +62,7 @@
     -moz-border-radius: 50%
     -ms-border-radius: 50%
     -o-border-radius: 50%
-    background: #28282C
+    background: $dn_main
     position: absolute
     left: 0
     right: 0
@@ -64,7 +78,12 @@
     font-family: 'Playfair Display', serif
     margin-bottom: 9px
     padding-left: 30px
-
+    +mq(xxl)
+        font-size: 18px
+    +mq(1024px)
+        padding-left: 0
+    +mq(lg)
+        font-size: 16px
 
 .findstore-section 
     padding-left: 130px
@@ -117,7 +136,12 @@
 .findstore__filter .select-wrapper 
     width: 100%
     margin: 0
-
+  
+    +mq(sm)
+        width: 100%
+        max-width: 100% !important
+        flex: 0 0 100% !important
+        padding: 0
 
 .findstore__filter .select-wrapper .select2-container--default .select2-selection--single 
     height: 70px
@@ -125,11 +149,20 @@
     border-bottom: 1px solid #9E9E9E
     display: flex
     align-items: center
-
+    +mq(xxl)
+        height: 60px
+        padding-top: 0
+    +mq(sm)
+        height: 50px
 
 .findstore__filter .select-wrapper .select2-container--default .select2-selection--single .select2-selection__rendered 
     padding-left: 30px
-
+    +mq(xxl)
+        padding-left: 20px
+    +mq(1024px)
+        padding-left: 0
+    +mq(lg)
+        font-size: 16px
 
 .findstore__filter .select-wrapper .select2-container--default .select2-selection--single .select2-selection__arrow 
     top: 50%
@@ -138,6 +171,8 @@
     align-items: center
     justify-content: center
     right: 28px
+    +mq(xxl)
+        right: 20px
 
 
 .findstore__filter .select2-container--default .select2-selection--single .select2-selection__arrow b 
@@ -145,11 +180,15 @@
     width: 0
     margin: 0 !important
     left: initial
-
+    +mq(lg)
+        border-width: 5px 6px 0 6px
 
 .findstore__search 
     margin-bottom: 50px
-
+    +mq(xxl)
+        margin-bottom: 40px
+    +mq(sm)
+        margin-bottom: 30px
 
 .myloc-btn 
     font-size: 20px
@@ -173,7 +212,12 @@
     padding: 0
     width: 100%
     outline: none
-
+    +mq(xxl)
+        font-size: 16px
+    +mq(1024px)
+        padding-left: 0
+    +mq(lg)
+        font-size: 16px
 
 .myloc-btn:hover 
     color: #28282C
@@ -183,11 +227,15 @@
 .myloc-btn img 
     display: inline-block
     margin-right: 16px
-
+    +mq(lg)
+        margin-right: 10px
 
 .findstore__myloc 
     margin-bottom: 59px
-
+    +mq(xxl)
+        margin-bottom: 40px
+    +mq(sm)
+        margin-bottom: 30px
 
 .findstore__submit.bluebtn 
     width: 100%
@@ -202,7 +250,10 @@
     background: #F1F1F1
     overflow: auto
     height: 100%
-
+    +mq(xl)
+        padding: 25px 20px
+    +mq(sm)
+        padding: 15px
 
 .findstore__shop 
     padding-bottom: 26px
@@ -253,6 +304,7 @@
         max-width: 75px
         flex: 0 0 75px
         justify-content: flex-end
+
 .findstore__shop ul 
     list-style-type: none
     padding: 0
@@ -272,6 +324,10 @@
         margin-bottom: 15px
     +mq(lg)
         padding-left: 23px
+    +mq(sm)
+        font-size: 14px
+    +mq(360.8px)
+        padding-left: 21px
 
 
 .findstore__shop ul li:last-child 
@@ -287,25 +343,39 @@
     background-size: 100%
     background-position: center
     background-repeat: no-repeat
-
+    +mq(360.8px)
+        width: 12px
+        height: 17px
+        top: 3px
 
 .findstore__shop ul li.loc:after 
     background-image: url('../img/icon/locic.svg')
     width: 16px
     height: 21px
+    +mq(360.8px)
+        width: 12px
+        height: 17px
+        top: 3px
 
 
 .findstore__shop ul li.phone:after 
     background-image: url('../img/icon/phoneic.svg')
     width: 13px
     height: 21px
+    +mq(360.8px)
+        width: 12px
+        height: 17px
+        top: 3px
 
 
 .findstore__shop ul li.site:after 
     background-image: url('../img/icon/webic.svg')
     width: 21px
     height: 21px
-
+    +mq(360.8px)
+        width: 17px
+        height: 17px
+        top: 3px
 
 .direction__box 
     text-align: center
@@ -314,13 +384,22 @@
 .direction__box img 
     max-width: 36px
     margin-bottom: 5px
-
+    +mq(sm)
+        margin-bottom: 0
+    +mq(360.8px)
+        max-width: 30px
 
 .direction__box p 
     margin: 0
     color: #9E9E9E
     font-size: 16px
     line-height: 22px
+    +mq(xxl)
+        font-size: 14px
+    +mq(lg)
+        font-size: 16px
+    +mq(sm)
+        font-size: 14px
 
 
 .findstore__shops 
@@ -356,8 +435,19 @@
 .map-wrapper 
     height: 800px
     overflow: hidden
-
+    +mq(xxl)
+        height: 650px
+    +mq(sm)
+        height: 500px
 
 .map-wrapper #map 
     height: 100%
 
+.gm-style-iw-a
+    .title
+        font-weight: bold
+    .direction
+        display: none
+    .col
+        li 
+            margin-bottom: 5px
