@@ -3,9 +3,16 @@
 
 .events 
     padding: 55px 0 105px 0
-
+    +mq(xxl)
+        padding: 50px 0 70px 0
+    +mq(lg)
+        padding: 50px 0
+    +mq(sm)
+        padding: 40px 0
 .events .section-head 
     margin-bottom: 70px
+    +mq(md)
+        margin-bottom: 50px
 
 
 .select-wrapper .select2 
@@ -21,7 +28,24 @@
 .select-wrapper 
     width: 203px
     margin-left: 40px
+    +mq(lg)
+        width: 145px
+        margin-left: 20px
+    +mq(sm)
+        margin-left: 0
+        padding: 0 10px
 
+.events__filter .select-wrapper:first-child, .select-wrapper:nth-child(2)
+    +mq(sm)
+        width: 100%
+        max-width: 50%
+        flex: 0 0 50%
+
+.events__filter .select-wrapper:nth-child(3)
+    +mq(sm)
+        width: 100%
+        max-width: 100%
+        flex: 0 0 100%
 
 .select-wrapper label 
     margin: 0
@@ -29,7 +53,8 @@
     line-height: 16px
     color: #9E9E9E
     padding-left: 14px
-
+    +mq(lg)
+        padding-left: 8px
 
 .select-wrapper .select2-container--default .select2-selection--single 
     border: none
@@ -37,6 +62,9 @@
     border-radius: 0
     height: 42px
     padding: 5px 0 0 0
+    +mq(lg)
+        height: 30px
+        padding: 0 
 
 
 .select-wrapper .select2-container--default .select2-selection--single .select2-selection__rendered 
@@ -44,7 +72,11 @@
     line-height: 27px
     color: #28282C
     padding: 0 20px 0 14px
-
+    +mq(xxl)
+        font-size: 18px
+    +mq(lg)
+        font-size: 14px
+        padding-left: 8px
 
 .select-wrapper .select2-container--default .select2-selection--single .select2-selection__arrow 
     top: 5px
@@ -54,7 +86,9 @@
     border-width: 6px 8px 0 8px
     border-color: #28282C transparent transparent transparent
     margin-left: -18px
-
+    +mq(lg)
+        border-width: 5px 6px 0 6px
+        margin-left: -8px
 
 .select-wrapper .select2.select2-container--open 
     background-color: #fff
@@ -64,7 +98,7 @@
     font-size: 16px
     line-height: 22px
     color: #28282C
-
+    
 
 .select-wrapper .select2-container--default .select2-results__option--selected 
     background-color: #f1f1f1
@@ -116,7 +150,9 @@
     overflow: hidden
     font-size: 16px
     line-height: 22px
-
+    +mq(lg)
+        padding: 5px 8px
+        font-size: 14px
 
 .flag-text 
     display: flex
@@ -128,19 +164,11 @@
     color: #9E9E9E
 
 
-
-
-
-
-
-
-
-
-
-
 .events__tablehead 
     padding-bottom: 3px
     border-bottom: 1px solid #E5E8ED
+    +mq(md)
+        display: none
 
 
 .events__tablehead p 
@@ -151,17 +179,48 @@
     color: #9E9E9E
     opacity: 0.7
     padding-left: 32px
+    +mq(xxl)
+        font-size: 18px
+    +mq(lg)
+        font-size: 16px
+        padding-left: 10px
 
+.events__tablebody
+    +mq(sm)
+        padding: 0 5px
 
 .events__tablebody .row 
     height: 189px
+    +mq(xxl)
+        height: 150px
+    +mq(lg)
+        margin-left: -5px
+        margin-right: -5px
+        height: auto
+        min-height: 120px
+        padding: 10px 0
+    +mq(sm)
+        padding: 15px 0
 
+    .col-md-3
+        +mq(lg)
+            padding-left: 5px
+            padding-right: 5px
+
+.mon-row
+    +mq(md)
+        display: flex
+        align-items: baseline
+        margin-bottom: 7px
 
 .events__tablebody .evbod-rowwrapp 
     padding-left: 32px
     position: relative
     z-index: 2
-
+    +mq(md)
+        width: 100%
+        max-width: 75%
+        flex: 0 0 75%
 
 .events__tablebody .ev 
     margin: 0
@@ -171,6 +230,34 @@
     font-size: 26px
     line-height: 170%
     max-width: 250px
+    +mq(xxl)
+        font-size: 22px
+    +mq(xl)
+        font-size: 18px
+    +mq(lg)
+        font-size: 18px
+    +mq(md)
+        max-width: 100%
+        line-height: normal
+
+.events .phone-title
+    display: none
+    +mq(md)
+        display: block
+        text-transform: uppercase
+        font-size: 14px
+        color: #9E9E9E
+        opacity: 0.7
+        line-height: 27px
+        width: 100%
+        max-width: 25%
+        flex: 0 0 25%
+        position: relative
+        z-index: 2
+    p
+        +mq(md)
+            margin: 0
+            line-height: normal
 
 
 .events__tablebody .date,
@@ -181,7 +268,17 @@
     margin: 0
     padding-left: 40px
     position: relative
-
+    +mq(xxl)
+        padding-left: 30px
+        font-size: 16px
+    +mq(xl)
+        font-size: 14px
+    +mq(lg)
+        padding-left: 20px
+    +mq(md)
+        font-size: 16px
+    +mq(360.8px)
+        font-size: 14px
 
 .events__tablebody .date:after,
 .events__tablebody .country:after,
@@ -197,7 +294,14 @@
     position: absolute
     left: 0
     top: 0
-
+    +mq(xxl)
+        width: 20px
+        height: 20px
+        top: 3px
+    +mq(lg)
+        width: 15px
+        height: 15px
+        top: 5px
 
 .events__tablebody .date:after 
     background-image: url('../img/icon/icon-calendar.svg')
@@ -215,7 +319,8 @@
 
 .events__tablebody .contacts li 
     margin-bottom: 19px
-
+    +mq(xl)
+        margin-bottom: 10px
 
 .events__tablebody .contacts li:last-child 
     margin-bottom: 0
@@ -228,7 +333,22 @@
     padding-left: 40px
     position: relative
     display: block
+    +mq(xxl)
+        font-size: 16px
+        padding-left: 30px
+        line-height: normal
+    +mq(xl)
+        font-size: 14px
+    +mq(lg)
+        padding-left: 20px
+    +mq(md)
+        font-size: 16px
+    +mq(360.8px)
+        font-size: 14px
 
+.events__tablebody .contacts li a.mail
+    +mq(xxl)
+        word-break: break-all 
 
 .events__tablebody .contacts .phone:after 
     background-image: url('../img/icon/icon-phone.svg')
@@ -268,6 +388,8 @@
         width: 430px
         height: 140px
         right: 5px
+    +mq(sm)
+        display: none
 
 .events .bluebtn 
     margin: 60px auto 0
@@ -293,7 +415,12 @@
     
 .events-section 
     padding: 0 0 70px 0
-
+    +mq(xxl)
+        padding: 0 0 50px 0
+    +mq(lg)
+        padding-top: 0
+    +mq(sm)
+        padding-top: 20px
 
 .events-section:before 
     content: ''
@@ -304,7 +431,10 @@
     width: 100%
     // background: #F1F1F1
     height: 425px
-
+    +mq(xxl)
+        height: 385px
+    +mq(xl)
+        height: 350px
 
 .events-section .container-fluid 
     position: relative
@@ -323,6 +453,19 @@ h1
     margin: 0 0 138px 0
     position: relative
     z-index: 2
+    +mq(xxl)
+        font-size: 38px
+        line-height: 48px
+    +mq(xl)
+        font-size: 32px
+        line-height: 44px
+    +mq(lg)
+        font-size: 28px
+        line-height: 42px
+    +mq(sm)
+        font-size: 22px
+        line-height: 30px
+        margin-bottom: 20px
 
 .page-title:after 
     content: ''
@@ -335,6 +478,9 @@ h1
     right: 0
     bottom: -18px
     margin: 0 auto
+    +mq(sm)
+        width: 80px
+        bottom: -10px
 
 .event-fig 
     position: absolute
@@ -343,7 +489,11 @@ h1
     display: block
     right: 0
     left: 0
-
+    +mq(xxl)
+        width: 550px
+        top: -50px
+    +mq(sm)
+        display: none
 
 .events-section.events .events__filter 
     padding-top: 30px
@@ -352,7 +502,10 @@ h1
 .events-section.events .events__tablehead p,
 .events__tablebody .evbod-rowwrapp 
     padding-left: 75px
-
+    +mq(xxl)
+        padding-left: 45px
+    +mq(lg)
+        padding-left: 10px
 
 .events .bottom-navigation .bluebtn 
     margin: 0

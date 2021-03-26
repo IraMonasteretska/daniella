@@ -31,14 +31,25 @@
 
     +mq(xxl)
         margin-bottom: 10px
+        font-size: 16px
     +mq(xl)
+        font-size: 14px
         margin-bottom: 0px
-
+    +mq(sm)
+        margin-bottom: 20px
 
 .find-store .boxdescr 
     margin-left: 158px
     display: inline-block
-
+    +mq(xxl)
+        margin-left: 100px
+    +mq(lg)
+        margin-left: 60px
+    +mq(md)
+        margin-left: 0
+    +mq(sm)
+        position: relative
+        z-index: 2
     .bluebtn
         margin: 0 auto
     
@@ -52,7 +63,19 @@
     color: #fff
     position: relative
     display: inline-block
-
+    +mq(xxl)
+        font-size: 36px
+        line-height: 60px
+    +mq(lg)
+        font-size: 32px
+        line-height: 50px
+        margin-bottom: 45px
+    +mq(md)
+        font-size: 24px
+        margin-bottom: 35px
+        line-height: 40px
+    +mq(sm)
+        font-size: 21px
 
 .find-store .boxdescr .title:after 
     content: ''

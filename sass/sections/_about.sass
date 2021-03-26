@@ -246,13 +246,18 @@
 
 .about-section.abus .absect-left 
     padding-top: 0
-
+    +mq(xxl)
+        padding-top: 55px
 
 .about-section.abus .section-subtitle 
     margin-bottom: 90px
 
 
-
+.about-section .descr p, .bottbox p 
+    +mq(xxl)
+        font-size: 16px
+    +mq(xl)
+        font-size: 14px
 
 .inform-sect2.pb70 
     padding-bottom: 70px
@@ -310,4 +315,27 @@
             +mq(xxl)
                 width: 60px
                 height: 44px
+
+
+.about-section .title, .about-section .title a 
+    +mq(xxl)
+        font-size: 22px
+    +mq(xl)
+        font-size: 18px
+    +mq(lg)
+        font-size: 26px
                
+.absect-right .pagingInfo 
+    +mq(xl)
+        bottom: 34px
+    +mq(lg)
+        right: 0
+
+.abslwrapp
+    +mq(xl)
+        position: relative
+
+.absect-left, .absect-right
+    +mq(lg)
+        max-width: 100%
+        flex: 0 0 100%

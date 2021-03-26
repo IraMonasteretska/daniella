@@ -2,7 +2,14 @@
     height: 100vh
     min-height: 575px
     max-height: 1200px
-
+    +mq(1400px)
+        height: 700px
+        min-height: 575px
+        position: relative
+    +mq(xl)
+        height: 575px
+    +mq(sm)
+        height: 100vh
 
 .mainslider__slide 
     // padding-top: 65px
@@ -11,14 +18,27 @@
     position: relative
     min-height: 575px
     max-height: 1200px
-
+    +mq(xxl)
+        display: flex
+        align-items: center
+    +mq(1400px)
+        height: 700px
+    +mq(xl)
+        height: 575px
+    +mq(sm)
+        height: 100vh
 
 .mainslider__slide img 
     width: 100%
     height: 100%
     object-fit: cover
     object-position: 0 0
-
+    +mq(1400px)
+        object-position: 100% 0
+    +mq(lg)
+        object-position: 70% 0
+    +mq(md)
+        opacity: 0.6
 
 .slick-slide 
     outline: none
@@ -32,7 +52,18 @@
     color: #9E9E9E
     font-size: 20px
     line-height: 27px
-
+    +mq(xxl)
+        font-size: 18px
+        bottom: 35px
+    +mq(1400px)
+        right: 80px
+        font-size: 16px
+    +mq(lg)
+        right: 40px
+    +mq(md)
+        right: 15px
+    +mq(sm)
+        bottom: 20px
 
 .mainslider__slidebox 
     position: absolute
@@ -40,7 +71,8 @@
     bottom: 25%
     width: 100%
     left: 0
-
+    +mq(xxl)
+        bottom: initial
 
 .mainslider__slidebox h3,
 .mainslider__slide-title 
@@ -51,7 +83,17 @@
     color: #ffffff
     text-transform: capitalize
     margin-bottom: 70px
-
+    +mq(xxl)
+        font-size: 48px
+        line-height: 68px
+    +mq(1400px)
+        font-size: 42px
+        line-height: 56px
+        margin-bottom: 50px
+    +mq(lg)
+        font-size: 36px
+        line-height: 46px
+        margin-bottom: 40px
 
 .mainslider .slick-arrow 
     position: absolute
@@ -67,15 +109,35 @@
     letter-spacing: 0.14em
     font-size: 18px
     line-height: 25px
-
+    +mq(xxl)
+        font-size: 16px
+        bottom: 35px
+    +mq(sm)
+        bottom: 20px
+        font-size: 14px
 
 .mainslider .slick-arrow.slick-prev 
     left: 130px
+    +mq(1400px)
+        left: 80px
+    +mq(lg)
+        left: 40px
+    +mq(md)
+        left: 15px
+    
 
 
 .mainslider .slick-arrow.slick-next 
     left: 385px
-
+    +mq(xxl)
+        left: 330px
+    +mq(1400px)
+        left: 270px
+    +mq(lg)
+        left: 200px
+    +mq(md)
+        left: 160px
+    
 
 .mainslider .slick-arrow.slick-next:before 
     content: ''
@@ -90,7 +152,33 @@
     -moz-transform: translateX(-175px)
     -ms-transform: translateX(-175px)
     -o-transform: translateX(-175px)
-
+    +mq(xxl)
+        width: 100px
+        transform: translateX(-127px)
+        -webkit-transform: translateX(-127px)
+        -moz-transform: translateX(-127px)
+        -ms-transform: translateX(-127px)
+        -o-transform: translateX(-127px)
+    +mq(1400px)
+        width: 100px
+        transform: translateX(-122px)
+        -webkit-transform: translateX(-122px)
+        -moz-transform: translateX(-122px)
+        -ms-transform: translateX(-122px)
+        -o-transform: translateX(-122px)
+    +mq(lg)
+        width: 70px
+        transform: translateX(-94px)
+        -webkit-transform: translateX(-94px)
+        -moz-transform: translateX(-94px)
+        -ms-transform: translateX(-94px)
+        -o-transform: translateX(-94px)
+    +mq(md)
+        transform: translateX(-85px)
+        -webkit-transform: translateX(-85px)
+        -moz-transform: translateX(-85px)
+        -ms-transform: translateX(-85px)
+        -o-transform: translateX(-85px)
 
 .mainslider .slick-arrow.slick-next,
 .mainslider .slick-arrow.slick-prev,

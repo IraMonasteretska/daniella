@@ -4,7 +4,10 @@
     margin: 175px 0 0 0
     position: relative
     z-index: 2
-
+    +mq(xl)
+        margin: 140px 0 0 0
+    +mq(lg)
+        margin-bottom: 0
 
 .breadcrumbs ul 
     padding: 0
@@ -16,14 +19,14 @@
     display: inline-block
     vertical-align: middle
 
-
 .breadcrumbs ul li,
 .breadcrumbs ul li a 
     color: #28282C
     font-size: 18px
     line-height: 24px
     font-family: 'Playfair Display', serif
-
+    +mq(xxl)
+        font-size: 16px
 
 .breadcrumbs ul li span 
     opacity: .6

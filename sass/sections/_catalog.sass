@@ -2,14 +2,18 @@
 /* Catalog section */
 .catalog-section 
     padding-top: 107px
-
+    +mq(xl)
+        padding-top: 65px
+    +mq(lg)
+        padding-top: 40px
 
 .catalog__header 
     min-height: 54px
     padding-bottom: 18px
     border-bottom: 1px solid #9E9E9E
     margin-bottom: 40px
-
+    +mq(lg)
+        margin-bottom: 10px
 
 .catalog__header .hide-filters 
     outline: none
@@ -20,18 +24,35 @@
     color: #28282C
     padding: 3px 33px
     background: transparent
-
+    +mq(xxl)
+        padding: 3px 20px
+        font-size: 16px
+    +mq(lg)
+        padding: 0
+    .hfbtn
+        +mq(lg)
+            display: none
+    .sfbtn
+        +mq(lg)
+            display: inline-block
 
 .catalog__header .hide-filters img 
     margin-right: 10px
     max-width: 21px
     margin-top: -6px
-
+    +mq(xxl)
+        margin-top: -5px
+    +mq(xl)
+        margin-right: 5px
 
 .sort-section 
     display: flex
     justify-content: flex-end
-
+    +mq(lg)
+        justify-content: space-between
+        margin-top: 10px
+    +mq(sm)
+        flex-wrap: wrap
 
 .sort-section .sort__count 
     width: 100%
@@ -41,27 +62,46 @@
     align-items: center
     justify-content: space-between
     margin-right: 75px
-
+    +mq(xxl)
+        max-width: 265px
+        flex: 0 0 265px
+    +mq(xl)
+        max-width: 240px
+        flex: 0 0 240px
+    +mq(lg)
+        margin: 0
+    +mq(sm)
+        max-width: 100%
+        flex: 0 0 100%
+        margin-bottom: 15px
+        display: none
 
 .title-sort 
     font-size: 20px
     line-height: 27px
     color: #9E9E9E
     margin: 0
-
+    +mq(xxl)
+        font-size: 16px
 
 .sort__count .cvar ul 
     list-style-type: none
     padding: 0
     margin: 0
-
+    +mq(sm)
+        width: 170px
+        display: flex
+        justify-content: space-between
 
 .sort__count .cvar ul li 
     display: inline-block
     vertical-align: middle
     position: relative
     margin-right: 27px
-
+    +mq(xxl)
+        margin-right: 20px
+    +mq(xl)
+        margin-right: 15px
 
 .sort__count .cvar ul li:last-child 
     margin-right: 0
@@ -77,7 +117,8 @@
     -moz-transition: .3s
     -ms-transition: .3s
     -o-transition: .3s
-
+    +mq(xxl)
+        font-size: 16px
 
 .sort__count .cvar ul li a:hover 
     opacity: 1
@@ -112,12 +153,31 @@
     align-items: center
     justify-content: space-between
     margin-right: 75px
-
+    +mq(xxl)
+        max-width: 225px
+        flex: 0 0 225px
+        margin-right: 50px
+    +mq(xl)
+        margin-right: 30px
+        max-width: 210px
+        flex: 0 0 210px
+    +mq(lg)
+        margin: 0
+    +mq(sm)
+        max-width: 100%
+        flex: 0 0 100%
 
 .sort__tag .select-wrapper 
     width: 140px
     margin: 0
-
+    +mq(xxl)
+        width: 120px
+    +mq(sm)
+        width: 170px
+        max-width: 170px
+        flex: 0 0 170px
+        padding-left: 0
+        padding-right: 0
 
 .sort__tag .select-wrapper .select2-container--default .select2-selection--single 
     padding-top: 0
@@ -127,7 +187,8 @@
 
 .sort__tag .select-wrapper .select2-container--default .select2-selection--single .select2-selection__rendered 
     padding: 0
-
+    +mq(xxl)
+        font-size: 16px
 
 .sort__tag .select-wrapper .select2-container--default .select2-selection--single .select2-selection__arrow b 
     margin: 0
@@ -135,7 +196,8 @@
     top: initial
     left: initial
     margin: 0
-
+    +mq(xxl)
+        border-width: 6px 7px 0 7px
 
 .sort__tag .select-wrapper .select2-container--default .select2-selection--single .select2-selection__arrow 
     top: 0
@@ -144,15 +206,12 @@
     justify-content: flex-end
     background: #fff
 
-
-
 .select2-container--open .select2-dropdown--below.catalog-dropdown 
     border-top: 1px solid #28282C
 
 
 .catalog-dropdown .select2-results__option 
     font-size: 18px
-
 
 .sort__col 
     width: 102px
@@ -161,11 +220,19 @@
     display: flex
     align-items: center
     justify-content: space-between
+    +mq(xxl)
+        width: 100%
+        max-width: 75px    
+    +mq(xl)
+        max-width: 70px
+    +mq(md)
+        display: none
 
 
 .sort__col span 
     cursor: pointer
-
+    +mq(xxl)
+        width: 29px
 
 .sort__col span svg rect 
     stroke: #9E9E9E
@@ -174,63 +241,6 @@
 .sort__col span:hover svg rect,
 .sort__col span.active svg rect 
     stroke: $dn_main
-
-
-
-// .product-block .title 
-//     text-align: center
-//     margin: 0
-//     letter-spacing: 0.14em
-//     color: #28282C
-//     font-size: 22px
-//     line-height: 30px
-//     padding: 20px 0 18px
-
-
-// .product-block .picwrap 
-//     overflow: hidden
-//     position: relative
-
-
-// .product-block .picwrap img 
-//     transition: .5s
-//     -webkit-transition: .5s
-//     -moz-transition: .5s
-//     -ms-transition: .5s
-//     -o-transition: .5s
-
-
-// .product-block .picwrap img 
-//     width: 100%
-//     height: 100%
-//     object-fit: cover
-//     object-position: 50% 50%
-//     transition: 1s
-//     -webkit-transition: 1s
-//     -moz-transition: 1s
-//     -ms-transition: 1s
-//     -o-transition: 1s
-//     -webkit-transform: translateZ(0)
-//     -moz-transform: translateZ(0)
-//     -ms-transform: translateZ(0)
-//     -o-transform: translateZ(0)
-//     transform: translateZ(0)
-//     -webkit-font-smoothing: antialiased
-
-
-// .product-block .picwrap:hover img 
-//     transform: scale(1.05)
-//     -webkit-transform: scale(1.05)
-//     -moz-transform: scale(1.05)
-//     -ms-transform: scale(1.05)
-//     -o-transform: scale(1.05)
-
-
-
-
-// .product-block 
-//     margin-bottom: 30px
- 
 
 .categ_item 
     cursor: pointer
@@ -346,17 +356,14 @@
     margin-bottom: 48px
 
 
-
-
-
-
 .catalog-section 
     padding-bottom: 12px
 
 
 .catalog-section .bottom-navigation 
     margin-top: 35px
-
+    +mq(xxl)
+        margin-top: 15px
 
 .blackbtn.transparent 
     color: #28282C
@@ -386,13 +393,19 @@
     list-style-type: none
     padding: 0
     margin: 0
-
+    +mq(sm)
+        display: flex
+        justify-content: space-between
+        align-items: center
+        width: 100%
+        margin-bottom: 25px
 
 .pagination ul li 
     display: inline-block
     vertical-align: middle
     margin-right: 29px
-
+    +mq(xxl)
+        margin-right: 20px
 
 .pagination ul li:last-child 
     margin-right: 0
@@ -408,7 +421,8 @@
     -moz-transition: .3s
     -ms-transition: .3s
     -o-transition: .3s
-
+    +mq(xxl)
+        font-size: 16px
 
 .pagination ul li:not(.active) a:hover 
     opacity: .6
@@ -422,7 +436,16 @@
     height: 64px
     border: 1px solid $dn_main
     border-radius: 6px
+    +mq(xxl)
+        width: 50px
+        height: 50px
+    +mq(xl)
+        width: 48px
+        height: 48px
 
+.filters-col
+    +mq(lg)
+        display: none
 
 .filter-sidebar>ul 
     list-style-type: none
@@ -447,7 +470,15 @@
     padding: 10px 55px 10px 33px
     position: relative
     cursor: pointer
-
+    +mq(xxl)
+        padding: 5px 20px
+        height: 60px
+        padding-right: 25px
+        font-size: 18px
+    +mq(xl)
+        font-size: 16px
+    +mq(sm)
+        padding-left: 0
 
 .filter-sidebar>ul>li>span::after 
     content: ''
@@ -471,7 +502,11 @@
     -moz-transition: .3s
     -ms-transition: .3s
     -o-transition: .3s
-
+    +mq(xxl)
+        width: 12px
+        right: 15px
+    +mq(xl)
+        right: 0
 
 .filter-sidebar>ul>li>span.rotate-arrow::after 
     transform: translateY(-50%) rotate(-180deg)
@@ -486,8 +521,8 @@
     padding: 0px 33px 10px 45px
     margin: 0
     display: none
-
-
+    +mq(xxl)
+        padding: 0px 25px 10px 30px
 .submenu-cat .checksect input 
     display: none
 
@@ -524,11 +559,14 @@
 
 .showf-text .sfbtn 
     display: inline-block
+    +mq(lg)
+        display: none !important
 
 
 .showf-text .hfbtn 
     display: none
-
+    +mq(lg)
+        display: inline-block !important
 
 .catalog-imgblocks.two-col .pr-col 
     -ms-flex: 0 0 50%
@@ -551,7 +589,11 @@
     left: 0
     top: 0
     z-index: 2
-
+    +mq(xxl)
+        font-size: 16px
+        width: 140px
+        height: 36px
+        letter-spacing: 0.10em
 
 .prodlabel.grey 
     background: rgba(62, 62, 66, 0.7)
@@ -568,16 +610,20 @@
 
 .active-filters 
     margin-bottom: 40px
-
+    +mq(lg)
+        margin-bottom: 20px
+        margin-top: 16px
 
 .clear 
     display: flex
     justify-content: flex-end
 
 
-.clear .blackbtn 
+.clear .bluebtn 
     width: 252px
-
+    +mq(xxl)
+        width: 190px
+        height: 50px
 
 .active-filters .title 
     text-transform: uppercase
@@ -586,7 +632,11 @@
     line-height: 27px
     color: #28282C
     padding-left: 33px
-
+    +mq(xxl)
+        padding-left: 20px
+        font-size: 18px
+    +mq(sm)
+        padding-left: 0
 
 .active-filtbox 
     position: relative
@@ -599,7 +649,10 @@
     letter-spacing: 0.18em
     color: #28282C
     font-family: 'Playfair Display', serif
-
+    +mq(xxl)
+        font-size: 18px
+    +mq(xl)
+        font-size: 16px
 
 .active-filtbox button 
     background: transparent
@@ -610,7 +663,8 @@
     right: 0
     top: 50%
     transform: translateY(-50%)
-
+    +mq(xxl)
+        width: 24px
 
 .active-filtbox 
     display: flex
@@ -618,10 +672,16 @@
     padding: 10px 40px 10px 33px
     height: 76px
     border-bottom: 1px solid #9E9E9E 
-
+    +mq(xxl)
+        padding: 5px 20px
+        height: 60px
+    +mq(sm)
+        padding-left: 0
 
 .active-filters__list 
     margin-bottom: 45px
+    +mq(xxl)
+        margin-bottom: 25px
 
 .header__blackline-nav.whbtn ul li.active a 
     background: #fff

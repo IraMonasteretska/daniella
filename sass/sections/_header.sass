@@ -283,11 +283,22 @@ header.header
         height: 22px
         background-image: url('../img/icon/icon-user-black.svg')
 
-.burgermenu-btn,
-.events .phone-title,
+.burgermenu-btn
+    display: none
 .phonecircle 
     display: none
 
+.burgermenu-btn
+    +mq(lg)
+        display: inline-block
+        width: 25px
+        height: 25px
+        position: absolute
+        right: 40px
+        top: 50%
+        transform: translateY(-50%)
+    +mq(md)
+        right: 15px
 
 .closemenu-btn
     display: none
