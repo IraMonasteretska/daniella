@@ -449,22 +449,6 @@
 .cluster * 
     outline: none
 
-
-.findstore__mapsect .title 
-    font-size: 26px
-    line-height: 35px
-    color: #28282C
-    letter-spacing: 0.08em
-    text-transform: uppercase
-    margin-bottom: 20px
-    font-family: 'Playfair Display', serif
-
-
-.findstore__mapsect .gm-style-iw.gm-style-iw-c 
-    width: 320px
-    padding: 24px 30px !important
-
-
 .findstore__mapsect ul 
     margin-bottom: 0
 
@@ -477,6 +461,9 @@
     margin-bottom: 20px
     padding-left: 27px
     position: relative
+    +mq(sm)
+        padding-left: 20px
+        font-size: 14px
 
 
 .findstore__mapsect ul li.loc:after 
@@ -490,6 +477,10 @@
     top: 0
     background-size: 100%
     background-repeat: no-repeat
+    +mq(sm)
+        width: 13px
+        height: 18px
+        top: 1px
 
 
 .findstore__mapsect ul li.phone:after 
@@ -503,11 +494,37 @@
     top: 0
     background-size: 100%
     background-repeat: no-repeat
+    +mq(sm)
+        width: 13px
+        height: 18px
+        top: 1px
 
 
 .findstore__mapsect ul li:last-child 
     margin-bottom: 0
 
+.findstore__mapsect .gm-style-iw.gm-style-iw-c 
+    width: 320px
+    padding: 24px 30px !important
+    +mq(1024px)
+        width: 280px
+        padding: 15px 10px 10px 15px !important
+
+.findstore__mapsect .title 
+    font-size: 26px
+    line-height: 35px
+    color: #28282C
+    letter-spacing: 0.08em
+    text-transform: uppercase
+    margin-bottom: 20px
+    font-family: 'Playfair Display', serif
+    +mq(1024px)
+        font-size: 20px
+        line-height: normal
+        margin-bottom: 15px
+    +mq(sm)
+        font-size: 18px
+        margin-bottom: 10px
 
 .findstore__mapsect .gm-style .gm-style-iw-d 
     padding: 0 !important
